@@ -1,0 +1,4 @@
+*.dill
+.filecache
+.dart_tool/flutter_build
+*.bin
