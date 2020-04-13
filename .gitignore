@@ -2,3 +2,6 @@
 .filecache
 .dart_tool/flutter_build
 *.bin
+build/ios/Debug-iphonesimulator
+build/ios/iphonesimulator
+ios/Flutter
