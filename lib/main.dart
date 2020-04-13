@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'home_page.dart';
+import 'Constants/styles.dart';
 
 void main() => runApp(Habbit());
 
@@ -8,11 +9,13 @@ class Habbit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Habbit',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: primaryColor,
+		scaffoldBackgroundColor: primaryColor,
+		accentColor: purpleColor
       ),
-      home: HomePage(title: 'Flutter Demo Home Page'),
+      home: HomePage(title: 'Home'),
     );
   }
 }
