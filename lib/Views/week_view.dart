@@ -55,6 +55,7 @@ class _WeekViewState extends State<WeekView> {
                     dayOfWeek: 0,
                     weekOffSet: _weekOffset,
                     onTap: () {
+                      callBack(0);
                       setState(() {
                         activeDate = getDate(0);
                       });
@@ -67,6 +68,7 @@ class _WeekViewState extends State<WeekView> {
                     dayOfWeek: 1,
                     weekOffSet: _weekOffset,
                     onTap: () {
+                      callBack(1);
                       setState(() {
                         activeDate = getDate(1);
                       });
@@ -79,6 +81,7 @@ class _WeekViewState extends State<WeekView> {
                     dayOfWeek: 2,
                     weekOffSet: _weekOffset,
                     onTap: () {
+                      callBack(2);
                       setState(() {
                         activeDate = getDate(2);
                       });
@@ -91,6 +94,7 @@ class _WeekViewState extends State<WeekView> {
                     dayOfWeek: 3,
                     weekOffSet: _weekOffset,
                     onTap: () {
+                      callBack(3);
                       setState(() {
                         activeDate = getDate(3);
                       });
@@ -103,6 +107,7 @@ class _WeekViewState extends State<WeekView> {
                     dayOfWeek: 4,
                     weekOffSet: _weekOffset,
                     onTap: () {
+                      callBack(4);
                       setState(() {
                         activeDate = getDate(4);
                       });
@@ -115,6 +120,7 @@ class _WeekViewState extends State<WeekView> {
                     dayOfWeek: 5,
                     weekOffSet: _weekOffset,
                     onTap: () {
+                      callBack(5);
                       setState(() {
                         activeDate = getDate(5);
                       });
@@ -127,6 +133,7 @@ class _WeekViewState extends State<WeekView> {
                     dayOfWeek: 6,
                     weekOffSet: _weekOffset,
                     onTap: () {
+                      callBack(6);
                       setState(() {
                         activeDate = getDate(6);
                       });
@@ -138,6 +145,11 @@ class _WeekViewState extends State<WeekView> {
         ),
       ],
     );
+  }
+
+  void callBack(int weekDay) {
+    DateTime today = getDate(weekDay);
+    widget.onTap(today);
   }
 
   bool isActiveDate(int weekDay) {
@@ -163,4 +175,3 @@ class _WeekViewState extends State<WeekView> {
     return DateFormat('MMM y').format(weekStartDate);
   }
 }
-

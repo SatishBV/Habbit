@@ -56,12 +56,6 @@
       "languageVersion": "2.0"
     },
     {
-      "name": "date_picker_timeline",
-      "rootUri": "file:///Users/s1b012r/Workspace/Training/Flutter%20workspace/flutter/.pub-cache/hosted/pub.dartlang.org/date_picker_timeline-1.2.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.1"
-    },
-    {
       "name": "flutter",
       "rootUri": "file:///Users/s1b012r/Workspace/Training/Flutter%20workspace/flutter/packages/flutter",
       "packageUri": "lib/",
@@ -188,7 +182,7 @@
       "languageVersion": "2.1"
     }
   ],
-  "generated": "2020-04-13T12:28:25.935137Z",
+  "generated": "2020-04-14T03:17:01.717034Z",
   "generator": "pub",
   "generatorVersion": "2.7.2"
 }

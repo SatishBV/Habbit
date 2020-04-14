@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'Constants/styles.dart';
-// import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'Views/week_view.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,7 +11,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-//   DatePickerController _controller = DatePickerController();
 
   @override
   void initState() {
@@ -32,9 +30,9 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 10.0,
             ),
-            WeekView(onTap: (date) {
-				print(date);
-			},)
+            WeekView(
+              onTap: onDateSelection,
+            ),
           ],
         ),
       ),
@@ -46,37 +44,9 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-}
 
-// DatePicker(
-//               DateTime(
-//                 DateTime.now().year,
-//                 DateTime.now().month,
-//                 DateTime.now().day - 3,
-//               ),
-//               height: 100.0,
-//               width: 60.0,
-//               daysCount: 12,
-//               controller: _controller,
-//               initialSelectedDate: DateTime.now(),
-//               monthTextStyle: monthTextStyle,
-//               dayTextStyle: dayTextStyle,
-//               dateTextStyle: dateTextStyle,
-//               selectionColor: purpleColor,
-//               onDateChange: (date) {
-//                 // New date selected
-//                 setState(() {});
-//               },
-//             ),
-//             SizedBox(
-//               height: 20.0,
-//             ),
-//             Container(
-//               height: 200,
-//               margin: EdgeInsets.only(left: 30.0, right: 30.0),
-//               color: purpleColor,
-//               child: Text(
-//                 'Hey',
-//                 style: dateTextStyle,
-//               ),
-//             )
+  void onDateSelection(DateTime dateTime) {
+    print(dateTime.year.toString());
+	print(dateTime.day.toString());
+  }
+}
