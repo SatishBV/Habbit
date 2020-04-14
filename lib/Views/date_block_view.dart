@@ -25,7 +25,7 @@ class DateBlockView extends StatelessWidget {
         height: 80.0,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
-          color: isActive ? yellowColor : blueColor,
+          color: isActive ? kGreenColor : kCardColor,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

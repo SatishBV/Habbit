@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-const Color darkBlueColor = Color(0xFF022C43);
-const Color mediumBlueColor = Color(0xFF053F5E);
-const Color blueColor = Color(0xFF115173);
-const Color yellowColor = Color(0xFFFFD700);
+const Color kPrimaryBlackColor = Color(0xFF121212);
+const Color kSecondaryBlackColor = Color(0xFF1A1A1D);
+const Color kCardColor = Color(0xFF1F2833);
+const Color kGreenColor = Color(0xFF86c232);
 const Color textColor = Colors.white;
 
 TextStyle get kScreenTitleLabel {
@@ -33,7 +33,7 @@ TextStyle get kDayLabel {
 
 TextStyle get kDayLabelActive {
   return GoogleFonts.poppins(
-    color: darkBlueColor.withOpacity(0.87),
+    color: kPrimaryBlackColor.withOpacity(0.87),
     fontSize: 12.0,
     fontWeight: FontWeight.w400,
   );
@@ -49,7 +49,7 @@ TextStyle get kDateLabel {
 
 TextStyle get kDateLabelActive {
   return GoogleFonts.poppins(
-    color: darkBlueColor.withOpacity(0.87),
+    color: kPrimaryBlackColor.withOpacity(0.87),
     fontSize: 25.0,
     fontWeight: FontWeight.w600,
   );
@@ -65,7 +65,7 @@ TextStyle get kHomePageCardTitle {
 
 TextStyle get kHomePageCardTitleDark {
   return GoogleFonts.roboto(
-    color: darkBlueColor.withOpacity(0.87),
+    color: kPrimaryBlackColor.withOpacity(0.87),
     fontSize: 25.0,
     fontWeight: FontWeight.w600,
   );

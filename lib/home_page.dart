@@ -56,9 +56,9 @@ class _HomePageState extends State<HomePage> {
         disabledElevation: 4.0,
         child: FaIcon(
           FontAwesomeIcons.plus,
-          color: darkBlueColor,
+          color: kPrimaryBlackColor,
         ),
-        backgroundColor: yellowColor,
+        backgroundColor: kGreenColor,
         elevation: 6,
         onPressed: () {
           Navigator.push(
@@ -99,7 +99,7 @@ class _HomePageCardState extends State<HomePageCard> {
         margin: EdgeInsets.all(10.0),
         height: 90.0,
         decoration: BoxDecoration(
-          color: blueColor,
+          color: kCardColor,
           borderRadius: BorderRadius.circular(10.0),
         ),
         child: Center(
@@ -119,14 +119,14 @@ class _HomePageCardState extends State<HomePageCard> {
                         ? Center(
                             child: FaIcon(
                               FontAwesomeIcons.solidCheckCircle,
-                              color: yellowColor,
+                              color: kGreenColor,
                               size: 30.0,
                             ),
                           )
                         : Center(
                             child: FaIcon(
                               FontAwesomeIcons.solidCircle,
-                              color: darkBlueColor,
+                              color: kPrimaryBlackColor,
                               size: 30.0,
                             ),
                           )),
