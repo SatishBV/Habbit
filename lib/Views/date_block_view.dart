@@ -25,13 +25,20 @@ class DateBlockView extends StatelessWidget {
         height: 80.0,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
-          color: isActive ? purpleColor : Colors.black,
+          color: isActive ? purpleColor : primaryColor,
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+              color: primaryColor,
+              offset: Offset(0.0, 0.0),
+              blurRadius: 40.0,
+            ),
+          ],
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(getDayText(), style: dayTextStyle),
-            Text(getDateForDay(dayOfWeek), style: dateTextStyle),
+            Text(getDayText(), style: kDayLabel),
+            Text(getDateForDay(dayOfWeek), style: kDateLabel),
           ],
         ),
       ),

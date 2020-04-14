@@ -21,6 +21,7 @@ class _WeekViewState extends State<WeekView> {
   void initState() {
     super.initState();
     _weekOffset = 0;
+	activeDate = DateTime.now();
   }
 
   @override
@@ -36,10 +37,11 @@ class _WeekViewState extends State<WeekView> {
           ),
           child: Text(
             getMonth(),
-            style: dateTextStyle,
+            style: kMonthYearLabel,
           ),
         ),
         Dismissible(
+			movementDuration: Duration(milliseconds: 0),
           resizeDuration: null,
           onDismissed: (DismissDirection direction) {
             setState(() {

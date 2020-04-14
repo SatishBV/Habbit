@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Constants/styles.dart';
 import 'Views/week_view.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -11,7 +12,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   @override
   void initState() {
     super.initState();
@@ -21,7 +21,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+		elevation: 8.0,
+        title: Text(
+          widget.title,
+          style: kScreenTitleLabel,
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -37,7 +41,8 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+		  disabledElevation: 4.0,
+        child: FaIcon(FontAwesomeIcons.plus),
         backgroundColor: purpleColor,
         elevation: 6,
         onPressed: () {},
@@ -47,6 +52,6 @@ class _HomePageState extends State<HomePage> {
 
   void onDateSelection(DateTime dateTime) {
     print(dateTime.year.toString());
-	print(dateTime.day.toString());
+    print(dateTime.day.toString());
   }
 }
