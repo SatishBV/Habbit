@@ -8,3 +8,4 @@ ios/Flutter
 .packages
 snapshot_blob.bin.d
 .packages~master
+package_config.json
