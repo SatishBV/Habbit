@@ -19,6 +19,6 @@ const TextStyle monthTextStyle = TextStyle(
 
 const TextStyle dateTextStyle = TextStyle(
   color: textColor,
-  fontSize: 25,
+  fontSize: 30.0,
   fontWeight: FontWeight.bold,
 );
