@@ -7,6 +7,13 @@ const Color kCardColor = Color(0xFF1F2833);
 const Color kGreenColor = Color(0xFF86c232);
 const Color textColor = Colors.white;
 
+const Color kYellowColor = Color(0xFFfaed26);
+const Color kBlueColor = Color(0xFF31708e);
+const Color kPinkColor = Color(0xFFe64398);
+const Color kOrangeColor = Color(0xFFf79e02);
+const Color kCyanColor = Color(0xFFd2fdff);
+const Color kRedColor = Color(0xFFc3073f);
+
 TextStyle get kScreenTitleLabel {
 	return GoogleFonts.poppins(
 		color: textColor,

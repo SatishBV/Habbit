@@ -19,23 +19,25 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    for (int i = 0; i < 20; i++) {
-      dummy.add('This is tile no $i');
-    }
+    dummy.add('Meditate');
+	dummy.add('Read books');
+	dummy.add('Do Yoga');
+	dummy.add('Drink 10 glasses water');
+	dummy.add('Write code');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(160.0),
+        preferredSize: Size.fromHeight(200.0),
         child: AppBar(
           elevation: 8.0,
           flexibleSpace: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
               SizedBox(
-                height: 60.0,
+                height: 90.0,
               ),
               WeekView(
                 onTap: onDateSelection,
@@ -97,7 +99,7 @@ class _HomePageCardState extends State<HomePageCard> {
     return ListTile(
       title: Container(
         margin: EdgeInsets.all(10.0),
-        height: 90.0,
+        height: 120.0,
         decoration: BoxDecoration(
           color: kCardColor,
           borderRadius: BorderRadius.circular(10.0),

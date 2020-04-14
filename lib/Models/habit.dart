@@ -1,4 +1,6 @@
 
+import 'package:flutter/material.dart';
+
 class Habit {
 	String title;
 	String description;
@@ -11,4 +13,6 @@ class Habit {
 	int bestStreak;
 
 	List<DateTime> checkIns;
+
+	Habit({@required this.title});
 }
