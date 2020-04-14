@@ -22,26 +22,24 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 8.0,
-        title: Text(
-          widget.title,
-          style: kScreenTitleLabel,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(160.0),
+        child: AppBar(
+          elevation: 8.0,
+          flexibleSpace: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              SizedBox(
+                height: 60.0,
+              ),
+              WeekView(
+                onTap: onDateSelection,
+              ),
+            ],
+          ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            SizedBox(
-              height: 10.0,
-            ),
-            WeekView(
-              onTap: onDateSelection,
-            ),
-          ],
-        ),
-      ),
+      body: Center(),
       floatingActionButton: FloatingActionButton(
         disabledElevation: 4.0,
         child: FaIcon(FontAwesomeIcons.plus),
