@@ -1,6 +1,6 @@
-# habbit
+# Habbit
 
-A new Flutter project.
+An app to keep track of your habits.
 
 ## Getting Started
 
