@@ -11,9 +11,9 @@ class Habbit extends StatelessWidget {
     return MaterialApp(
       title: 'Habbit',
       theme: ThemeData(
-        primaryColor: primaryColor,
-		scaffoldBackgroundColor: primaryColor,
-		accentColor: purpleColor
+        primaryColor: mediumBlueColor,
+		scaffoldBackgroundColor: darkBlueColor,
+		accentColor: yellowColor
       ),
       home: HomePage(title: 'Home'),
     );

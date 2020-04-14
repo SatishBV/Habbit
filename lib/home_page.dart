@@ -54,8 +54,11 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         disabledElevation: 4.0,
-        child: FaIcon(FontAwesomeIcons.plus),
-        backgroundColor: purpleColor,
+        child: FaIcon(
+          FontAwesomeIcons.plus,
+          color: darkBlueColor,
+        ),
+        backgroundColor: yellowColor,
         elevation: 6,
         onPressed: () {
           Navigator.push(
@@ -96,15 +99,54 @@ class _HomePageCardState extends State<HomePageCard> {
         margin: EdgeInsets.all(10.0),
         height: 90.0,
         decoration: BoxDecoration(
-          color: Colors.orange,
+          color: blueColor,
           borderRadius: BorderRadius.circular(10.0),
         ),
         child: Center(
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Text(
-                widget.habitText,
-                style: kDateLabel,
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _isSelected = !_isSelected;
+                  });
+                },
+                child: Container(
+                    height: 60.0,
+                    width: 60.0,
+                    child: _isSelected
+                        ? Center(
+                            child: FaIcon(
+                              FontAwesomeIcons.solidCheckCircle,
+                              color: yellowColor,
+                              size: 30.0,
+                            ),
+                          )
+                        : Center(
+                            child: FaIcon(
+                              FontAwesomeIcons.solidCircle,
+                              color: darkBlueColor,
+                              size: 30.0,
+                            ),
+                          )),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    widget.habitText,
+                    style: kHomePageCardTitle,
+                  ),
+                  SizedBox(
+                    height: 6.0,
+                  ),
+                  Text(
+                    'Description',
+                    style: kDayLabel,
+                  )
+                ],
               ),
             ],
           ),
