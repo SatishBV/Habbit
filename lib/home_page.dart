@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class HomePageCard extends StatelessWidget {
+class HomePageCard extends StatefulWidget {
   const HomePageCard({
     Key key,
     @required this.habitText,
@@ -83,18 +83,27 @@ class HomePageCard extends StatelessWidget {
   final String habitText;
 
   @override
+  _HomePageCardState createState() => _HomePageCardState();
+}
+
+class _HomePageCardState extends State<HomePageCard> {
+  bool _isSelected = false;
+
+  @override
   Widget build(BuildContext context) {
     return ListTile(
       title: Container(
         margin: EdgeInsets.all(10.0),
         height: 90.0,
         decoration: BoxDecoration(
-            color: purpleColor, borderRadius: BorderRadius.circular(10.0)),
+          color: Colors.orange,
+          borderRadius: BorderRadius.circular(10.0),
+        ),
         child: Center(
           child: Row(
             children: <Widget>[
               Text(
-                habitText,
+                widget.habitText,
                 style: kDateLabel,
               ),
             ],
