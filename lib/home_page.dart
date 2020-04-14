@@ -14,9 +14,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<String> dummy = new List();
   @override
   void initState() {
     super.initState();
+
+    for (int i = 0; i < 20; i++) {
+      dummy.add('This is tile no $i');
+    }
   }
 
   @override
@@ -39,7 +44,14 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: Center(),
+      body: ListView.builder(
+        itemCount: dummy.length,
+        itemBuilder: (context, index) {
+          return HomePageCard(
+            habitText: dummy[index],
+          );
+        },
+      ),
       floatingActionButton: FloatingActionButton(
         disabledElevation: 4.0,
         child: FaIcon(FontAwesomeIcons.plus),
@@ -59,5 +71,36 @@ class _HomePageState extends State<HomePage> {
   void onDateSelection(DateTime dateTime) {
     print(dateTime.year.toString());
     print(dateTime.day.toString());
+  }
+}
+
+class HomePageCard extends StatelessWidget {
+  const HomePageCard({
+    Key key,
+    @required this.habitText,
+  }) : super(key: key);
+
+  final String habitText;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Container(
+        margin: EdgeInsets.all(10.0),
+        height: 90.0,
+        decoration: BoxDecoration(
+            color: purpleColor, borderRadius: BorderRadius.circular(10.0)),
+        child: Center(
+          child: Row(
+            children: <Widget>[
+              Text(
+                habitText,
+                style: kDateLabel,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
