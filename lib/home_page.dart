@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:habbit/add_habit.dart';
 import 'Constants/styles.dart';
 import 'Views/week_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -21,7 +23,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-		elevation: 8.0,
+        elevation: 8.0,
         title: Text(
           widget.title,
           style: kScreenTitleLabel,
@@ -41,11 +43,17 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-		  disabledElevation: 4.0,
+        disabledElevation: 4.0,
         child: FaIcon(FontAwesomeIcons.plus),
         backgroundColor: purpleColor,
         elevation: 6,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            CupertinoPageRoute(
+                builder: (context) => CreateHabbit(), fullscreenDialog: true),
+          );
+        },
       ),
     );
   }

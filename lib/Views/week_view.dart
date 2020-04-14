@@ -21,7 +21,7 @@ class _WeekViewState extends State<WeekView> {
   void initState() {
     super.initState();
     _weekOffset = 0;
-	activeDate = DateTime.now();
+    activeDate = DateTime.now();
   }
 
   @override
@@ -41,7 +41,7 @@ class _WeekViewState extends State<WeekView> {
           ),
         ),
         Dismissible(
-			movementDuration: Duration(milliseconds: 0),
+          movementDuration: Duration(milliseconds: 0),
           resizeDuration: null,
           onDismissed: (DismissDirection direction) {
             setState(() {
@@ -160,7 +160,9 @@ class _WeekViewState extends State<WeekView> {
     DateTime weekStartDate = DateUtils.weekStart(dateByOffset);
     DateTime dateDay = weekStartDate.add(Duration(days: weekDay));
 
-    return dateDay.day == activeDate.day;
+    return dateDay.day == activeDate.day &&
+        dateDay.month == activeDate.month &&
+        dateDay.year == activeDate.year;
   }
 
   DateTime getDate(int weekDay) {
