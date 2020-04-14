@@ -32,7 +32,9 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 10.0,
             ),
-            WeekView(onTap: (date) {},)
+            WeekView(onTap: (date) {
+				print(date);
+			},)
           ],
         ),
       ),
