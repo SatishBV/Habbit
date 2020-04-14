@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:habbit/Constants/styles.dart';
 import 'package:intl/intl.dart';
 import 'package:habbit/Utils/date_util.dart';
+import 'package:habbit/Views/date_block_view.dart';
 
 class WeekView extends StatefulWidget {
   final Function onTap;
@@ -14,12 +15,13 @@ class WeekView extends StatefulWidget {
 
 class _WeekViewState extends State<WeekView> {
   int _weekOffset = 0;
-  DateTime activeDate = DateTime.now();	
+  DateTime activeDate = DateTime.now();
 
   @override
   void initState() {
     super.initState();
     _weekOffset = 0;
+	activeDate = DateTime.now();
   }
 
   @override
@@ -35,10 +37,11 @@ class _WeekViewState extends State<WeekView> {
           ),
           child: Text(
             getMonth(),
-            style: dateTextStyle,
+            style: kMonthYearLabel,
           ),
         ),
         Dismissible(
+			movementDuration: Duration(milliseconds: 0),
           resizeDuration: null,
           onDismissed: (DismissDirection direction) {
             setState(() {
@@ -49,131 +52,96 @@ class _WeekViewState extends State<WeekView> {
           child: Row(
             children: <Widget>[
               Expanded(
-                flex: 1,
-                child: Container(
-                  margin: EdgeInsets.all(6.0),
-                  height: 80.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: isActiveDate(0) ? purpleColor : Colors.black,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Mon', style: dayTextStyle),
-                      Text(getDateForDay(0), style: dateTextStyle),
-                    ],
-                  ),
-                ),
-              ),
+                  flex: 1,
+                  child: DateBlockView(
+                    dayOfWeek: 0,
+                    weekOffSet: _weekOffset,
+                    onTap: () {
+                      callBack(0);
+                      setState(() {
+                        activeDate = getDate(0);
+                      });
+                    },
+                    isActive: isActiveDate(0),
+                  )),
               Expanded(
-                flex: 1,
-                child: Container(
-                  margin: EdgeInsets.all(6.0),
-                  height: 80.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: isActiveDate(1) ? purpleColor : Colors.black,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Tue', style: dayTextStyle),
-                      Text(getDateForDay(1), style: dateTextStyle),
-                    ],
-                  ),
-                ),
-              ),
+                  flex: 1,
+                  child: DateBlockView(
+                    dayOfWeek: 1,
+                    weekOffSet: _weekOffset,
+                    onTap: () {
+                      callBack(1);
+                      setState(() {
+                        activeDate = getDate(1);
+                      });
+                    },
+                    isActive: isActiveDate(1),
+                  )),
               Expanded(
-                flex: 1,
-                child: Container(
-                  margin: EdgeInsets.all(6.0),
-                  height: 80.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: isActiveDate(2) ? purpleColor : Colors.black,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Wed', style: dayTextStyle),
-                      Text(getDateForDay(2), style: dateTextStyle),
-                    ],
-                  ),
-                ),
-              ),
+                  flex: 1,
+                  child: DateBlockView(
+                    dayOfWeek: 2,
+                    weekOffSet: _weekOffset,
+                    onTap: () {
+                      callBack(2);
+                      setState(() {
+                        activeDate = getDate(2);
+                      });
+                    },
+                    isActive: isActiveDate(2),
+                  )),
               Expanded(
-                flex: 1,
-                child: Container(
-                  margin: EdgeInsets.all(6.0),
-                  height: 80.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: isActiveDate(3) ? purpleColor : Colors.black,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Thu', style: dayTextStyle),
-                      Text(getDateForDay(3), style: dateTextStyle),
-                    ],
-                  ),
-                ),
-              ),
+                  flex: 1,
+                  child: DateBlockView(
+                    dayOfWeek: 3,
+                    weekOffSet: _weekOffset,
+                    onTap: () {
+                      callBack(3);
+                      setState(() {
+                        activeDate = getDate(3);
+                      });
+                    },
+                    isActive: isActiveDate(3),
+                  )),
               Expanded(
-                flex: 1,
-                child: Container(
-                  margin: EdgeInsets.all(6.0),
-                  height: 80.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: isActiveDate(4) ? purpleColor : Colors.black,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Fri', style: dayTextStyle),
-                      Text(getDateForDay(4), style: dateTextStyle),
-                    ],
-                  ),
-                ),
-              ),
+                  flex: 1,
+                  child: DateBlockView(
+                    dayOfWeek: 4,
+                    weekOffSet: _weekOffset,
+                    onTap: () {
+                      callBack(4);
+                      setState(() {
+                        activeDate = getDate(4);
+                      });
+                    },
+                    isActive: isActiveDate(4),
+                  )),
               Expanded(
-                flex: 1,
-                child: Container(
-                  margin: EdgeInsets.all(6.0),
-                  height: 80.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: isActiveDate(5) ? purpleColor : Colors.black,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Sat', style: dayTextStyle),
-                      Text(getDateForDay(5), style: dateTextStyle),
-                    ],
-                  ),
-                ),
-              ),
+                  flex: 1,
+                  child: DateBlockView(
+                    dayOfWeek: 5,
+                    weekOffSet: _weekOffset,
+                    onTap: () {
+                      callBack(5);
+                      setState(() {
+                        activeDate = getDate(5);
+                      });
+                    },
+                    isActive: isActiveDate(5),
+                  )),
               Expanded(
-                flex: 1,
-                child: Container(
-                  margin: EdgeInsets.all(6.0),
-                  height: 80.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    color: isActiveDate(6) ? purpleColor : Colors.black,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('Sun', style: dayTextStyle),
-                      Text(getDateForDay(6), style: dateTextStyle),
-                    ],
-                  ),
-                ),
-              ),
+                  flex: 1,
+                  child: DateBlockView(
+                    dayOfWeek: 6,
+                    weekOffSet: _weekOffset,
+                    onTap: () {
+                      callBack(6);
+                      setState(() {
+                        activeDate = getDate(6);
+                      });
+                    },
+                    isActive: isActiveDate(6),
+                  )),
             ],
           ),
         ),
@@ -181,21 +149,25 @@ class _WeekViewState extends State<WeekView> {
     );
   }
 
-  bool isActiveDate(int weekDay) {
-	  DateTime dateByOffset =
-        DateTime.now().subtract(Duration(days: 7 * _weekOffset));
-    DateTime weekStartDate = DateUtils.weekStart(dateByOffset);
-	DateTime dateDay = weekStartDate.add(Duration(days: weekDay));
-
-	return dateDay.day == activeDate.day;
+  void callBack(int weekDay) {
+    DateTime today = getDate(weekDay);
+    widget.onTap(today);
   }
 
-  String getDateForDay(int weekDay) {
+  bool isActiveDate(int weekDay) {
     DateTime dateByOffset =
         DateTime.now().subtract(Duration(days: 7 * _weekOffset));
     DateTime weekStartDate = DateUtils.weekStart(dateByOffset);
     DateTime dateDay = weekStartDate.add(Duration(days: weekDay));
-    return DateFormat('d').format(dateDay);
+
+    return dateDay.day == activeDate.day;
+  }
+
+  DateTime getDate(int weekDay) {
+    DateTime dateByOffset =
+        DateTime.now().subtract(Duration(days: 7 * _weekOffset));
+    DateTime weekStartDate = DateUtils.weekStart(dateByOffset);
+    return weekStartDate.add(Duration(days: weekDay));
   }
 
   String getMonth() {
@@ -205,5 +177,3 @@ class _WeekViewState extends State<WeekView> {
     return DateFormat('MMM y').format(weekStartDate);
   }
 }
-
-// class DateBlockView extends StatefulWidget

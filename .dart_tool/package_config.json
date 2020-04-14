@@ -56,12 +56,6 @@
       "languageVersion": "2.0"
     },
     {
-      "name": "date_picker_timeline",
-      "rootUri": "file:///Users/s1b012r/Workspace/Training/Flutter%20workspace/flutter/.pub-cache/hosted/pub.dartlang.org/date_picker_timeline-1.2.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.1"
-    },
-    {
       "name": "flutter",
       "rootUri": "file:///Users/s1b012r/Workspace/Training/Flutter%20workspace/flutter/packages/flutter",
       "packageUri": "lib/",
@@ -72,6 +66,30 @@
       "rootUri": "file:///Users/s1b012r/Workspace/Training/Flutter%20workspace/flutter/packages/flutter_test",
       "packageUri": "lib/",
       "languageVersion": "2.2"
+    },
+    {
+      "name": "font_awesome_flutter",
+      "rootUri": "file:///Users/s1b012r/Workspace/Training/Flutter%20workspace/flutter/.pub-cache/hosted/pub.dartlang.org/font_awesome_flutter-8.8.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "google_fonts",
+      "rootUri": "file:///Users/s1b012r/Workspace/Training/Flutter%20workspace/flutter/.pub-cache/hosted/pub.dartlang.org/google_fonts-0.4.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.3"
+    },
+    {
+      "name": "http",
+      "rootUri": "file:///Users/s1b012r/Workspace/Training/Flutter%20workspace/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.12.0+4",
+      "packageUri": "lib/",
+      "languageVersion": "2.4"
+    },
+    {
+      "name": "http_parser",
+      "rootUri": "file:///Users/s1b012r/Workspace/Training/Flutter%20workspace/flutter/.pub-cache/hosted/pub.dartlang.org/http_parser-3.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.3"
     },
     {
       "name": "image",
@@ -104,6 +122,24 @@
       "languageVersion": "2.0"
     },
     {
+      "name": "path_provider",
+      "rootUri": "file:///Users/s1b012r/Workspace/Training/Flutter%20workspace/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.6.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
+      "name": "path_provider_macos",
+      "rootUri": "file:///Users/s1b012r/Workspace/Training/Flutter%20workspace/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_macos-0.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
+    },
+    {
+      "name": "path_provider_platform_interface",
+      "rootUri": "file:///Users/s1b012r/Workspace/Training/Flutter%20workspace/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_platform_interface-1.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "pedantic",
       "rootUri": "file:///Users/s1b012r/Workspace/Training/Flutter%20workspace/flutter/.pub-cache/hosted/pub.dartlang.org/pedantic-1.8.0+1",
       "packageUri": "lib/",
@@ -114,6 +150,18 @@
       "rootUri": "file:///Users/s1b012r/Workspace/Training/Flutter%20workspace/flutter/.pub-cache/hosted/pub.dartlang.org/petitparser-2.4.0",
       "packageUri": "lib/",
       "languageVersion": "2.4"
+    },
+    {
+      "name": "platform",
+      "rootUri": "file:///Users/s1b012r/Workspace/Training/Flutter%20workspace/flutter/.pub-cache/hosted/pub.dartlang.org/platform-2.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "1.24"
+    },
+    {
+      "name": "plugin_platform_interface",
+      "rootUri": "file:///Users/s1b012r/Workspace/Training/Flutter%20workspace/flutter/.pub-cache/hosted/pub.dartlang.org/plugin_platform_interface-1.0.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.1"
     },
     {
       "name": "quiver",
@@ -188,7 +236,7 @@
       "languageVersion": "2.1"
     }
   ],
-  "generated": "2020-04-14T04:55:03.083201Z",
+  "generated": "2020-04-14T04:01:05.858935Z",
   "generator": "pub",
   "generatorVersion": "2.7.2"
 }
