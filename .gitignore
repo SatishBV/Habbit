@@ -5,3 +5,6 @@
 build/ios/Debug-iphonesimulator
 build/ios/iphonesimulator
 ios/Flutter
+.packages
+snapshot_blob.bin.d
+.packages~master
