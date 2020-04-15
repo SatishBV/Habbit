@@ -20,10 +20,8 @@ class _HomePageState extends State<HomePage> {
     super.initState();
 
     dummy.add('Meditate');
-	dummy.add('Read books');
-	dummy.add('Do Yoga');
-	dummy.add('Drink 10 glasses water');
-	dummy.add('Write code');
+    dummy.add('Read books');
+    dummy.add('Do Yoga');
   }
 
   @override
@@ -106,50 +104,63 @@ class _HomePageCardState extends State<HomePageCard> {
         ),
         child: Center(
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    _isSelected = !_isSelected;
-                  });
-                },
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _isSelected = !_isSelected;
+                    });
+                  },
+                  child: Container(
+                      height: 60.0,
+                      width: 60.0,
+                      child: _isSelected
+                          ? Center(
+                              child: FaIcon(
+                                FontAwesomeIcons.solidCheckCircle,
+                                color: kGreenColor,
+                                size: 30.0,
+                              ),
+                            )
+                          : Center(
+                              child: FaIcon(
+                                FontAwesomeIcons.solidCircle,
+                                color: kPrimaryBlackColor,
+                                size: 30.0,
+                              ),
+                            )),
+                ),
+              ),
+              Expanded(
+                flex: 3,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      widget.habitText,
+                      style: kHomePageCardTitle,
+                    ),
+                    SizedBox(
+                      height: 6.0,
+                    ),
+                    Text(
+                      'Description',
+                      style: kDayLabel,
+                    )
+                  ],
+                ),
+              ),
+              Expanded(
+                flex: 2,
                 child: Container(
-                    height: 60.0,
-                    width: 60.0,
-                    child: _isSelected
-                        ? Center(
-                            child: FaIcon(
-                              FontAwesomeIcons.solidCheckCircle,
-                              color: kGreenColor,
-                              size: 30.0,
-                            ),
-                          )
-                        : Center(
-                            child: FaIcon(
-                              FontAwesomeIcons.solidCircle,
-                              color: kPrimaryBlackColor,
-                              size: 30.0,
-                            ),
-                          )),
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    widget.habitText,
-                    style: kHomePageCardTitle,
-                  ),
-                  SizedBox(
-                    height: 6.0,
-                  ),
-                  Text(
-                    'Description',
-                    style: kDayLabel,
-                  )
-                ],
-              ),
+                  color: kGreenColor,
+                  height: 120.0,
+                ),
+              )
             ],
           ),
         ),
