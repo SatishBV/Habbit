@@ -22,7 +22,8 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-	dummy.add(Habit(title: 'Meditation', description: 'Start the day with calm'));
+    dummy.add(
+        Habit(title: 'Meditation', description: 'Start the day with calm'));
   }
 
   @override
@@ -69,7 +70,10 @@ class _HomePageState extends State<HomePage> {
           Navigator.push(
             context,
             CupertinoPageRoute(
-                builder: (context) => CreateHabbit(), fullscreenDialog: true),
+                builder: (context) => CreateHabbit(
+                      onSave: addHabitCallBack,
+                    ),
+                fullscreenDialog: true),
           );
         },
       ),
@@ -79,5 +83,11 @@ class _HomePageState extends State<HomePage> {
   void onDateSelection(DateTime dateTime) {
     print(dateTime.year.toString());
     print(dateTime.day.toString());
+  }
+
+  void addHabitCallBack(Habit habit) {
+    setState(() {
+      dummy.add(habit);
+    });
   }
 }

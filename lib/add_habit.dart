@@ -4,6 +4,10 @@ import 'Constants/styles.dart';
 import 'Models/habit.dart';
 
 class CreateHabbit extends StatefulWidget {
+  final Function onSave;
+
+  CreateHabbit({@required this.onSave});
+
   @override
   _CreateHabitState createState() => _CreateHabitState();
 }
@@ -13,10 +17,13 @@ class _CreateHabitState extends State<CreateHabbit> {
 
   @override
   Widget build(BuildContext context) {
+    habit = Habit();
+    habit.title = 'Yoga';
+    habit.description = 'Get flexing';
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kGreenColor,
-		centerTitle: false,
         leading: IconButton(
           icon: FaIcon(
             FontAwesomeIcons.arrowLeft,
@@ -30,7 +37,15 @@ class _CreateHabitState extends State<CreateHabbit> {
           style: kAddHabitPageTitleLabel,
         ),
       ),
-      body: Container(),
+      body: Center(
+        child: FlatButton(
+          onPressed: () {
+            Navigator.of(context).pop(widget.onSave(habit));
+          },
+          color: kGreenColor,
+          child: Text('Save'),
+        ),
+      ),
     );
   }
 }
