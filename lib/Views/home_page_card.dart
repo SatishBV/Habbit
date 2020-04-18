@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:habbit/Constants/styles.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:habbit/Models/habit.dart';
 
 class HomePageCard extends StatefulWidget {
   const HomePageCard({
     Key key,
-    @required this.habitText,
+    @required this.habit,
   }) : super(key: key);
 
-  final String habitText;
+  final Habit habit;
 
   @override
   _HomePageCardState createState() => _HomePageCardState();
@@ -66,14 +67,14 @@ class _HomePageCardState extends State<HomePageCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
-                      widget.habitText,
+                      widget.habit.title,
                       style: kHomePageCardTitle,
                     ),
                     SizedBox(
                       height: 6.0,
                     ),
                     Text(
-                      'Description',
+                      widget.habit.description,
                       style: kDayLabel,
                     )
                   ],

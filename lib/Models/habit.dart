@@ -14,5 +14,5 @@ class Habit {
 
 	List<DateTime> checkIns;
 
-	Habit({@required this.title});
+	Habit({@required this.title, this.description});
 }

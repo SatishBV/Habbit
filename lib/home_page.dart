@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:habbit/Models/habit.dart';
 import 'package:habbit/add_habit.dart';
 import 'Constants/styles.dart';
 import 'Views/week_view.dart';
@@ -15,14 +16,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<String> dummy = new List();
+  List<Habit> dummy = new List();
+
   @override
   void initState() {
     super.initState();
 
-    dummy.add('Meditate');
-    dummy.add('Read books');
-    dummy.add('Do Yoga');
+	dummy.add(Habit(title: 'Meditation', description: 'Start the day with calm'));
   }
 
   @override
@@ -38,7 +38,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           flexibleSpace: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
               SizedBox(
                 height: 80.0,
@@ -54,7 +53,7 @@ class _HomePageState extends State<HomePage> {
         itemCount: dummy.length,
         itemBuilder: (context, index) {
           return HomePageCard(
-            habitText: dummy[index],
+            habit: dummy[index],
           );
         },
       ),
