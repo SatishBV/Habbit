@@ -4,22 +4,16 @@ import 'package:habbit/Models/habit.dart';
 import 'package:habbit/Views/day_circle.dart';
 
 class WeekDayPicker extends StatefulWidget {
+  final Map<WeekDay, bool> days;
+  final Function onDayTap;
+
+  WeekDayPicker({@required this.days, @required this.onDayTap});
+
   @override
-  _DayPickerState createState() => _DayPickerState();
+  _WeekDayPickerState createState() => _WeekDayPickerState();
 }
 
-class _DayPickerState extends State<WeekDayPicker> {
-  Map<WeekDay, bool> days = new Map();
-
-  @override
-  void initState() {
-    super.initState();
-
-    for (WeekDay day in WeekDay.values) {
-      days[day] = false;
-    }
-  }
-
+class _WeekDayPickerState extends State<WeekDayPicker> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -45,21 +39,18 @@ class _DayPickerState extends State<WeekDayPicker> {
     );
   }
 
-  void onDayTap(WeekDay day) {
-    setState(() {
-      days[day] = !days[day];
-    });
-  }
-
   List<Widget> _getDayCircles() {
     List<DayCircle> blocks = [];
 
     for (WeekDay day in WeekDay.values) {
       DayCircle circle = DayCircle(
         day: day,
-        isActive: days[day],
+        isActive: widget.days[day],
         onTap: () {
-          onDayTap(day);
+          setState(() {
+            widget.days[day] = !widget.days[day];
+          });
+          widget.onDayTap(widget.days);
         },
       );
 
@@ -68,4 +59,3 @@ class _DayPickerState extends State<WeekDayPicker> {
     return blocks;
   }
 }
-

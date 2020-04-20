@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 enum WeekDay { monday, tuesday, wednesday, thursday, friday, saturday, sunday }
 
 extension WeekDayExtension on WeekDay {
@@ -26,17 +24,21 @@ extension WeekDayExtension on WeekDay {
 }
 
 class Habit {
-  String title;
-  String description;
+  String title = '';
+  String description = '';
   // Color habitColor;
 
-  Map<WeekDay, bool> selectedDays;
-  List<int> timeOfDays;
+  Map<WeekDay, bool> selectedDays = new Map();
+  List<int> timeOfDays = [];
 
   int currentStreak;
   int bestStreak;
 
   List<DateTime> checkIns;
 
-  Habit({@required this.title, this.description});
+  Habit() {
+    for(WeekDay day in WeekDay.values) {
+      selectedDays[day] = false;
+    }
+  }
 }

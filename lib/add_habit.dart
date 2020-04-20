@@ -22,9 +22,16 @@ class _CreateHabitState extends State<CreateHabbit> {
   TextEditingController _descriptionEditingController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    habit = Habit();
+  }
+
+  @override
   void dispose() {
     super.dispose();
     _nameTextEditingController.dispose();
+    _descriptionEditingController.dispose();
   }
 
   @override
@@ -67,8 +74,25 @@ class _CreateHabitState extends State<CreateHabbit> {
                   habit.description = value;
                 },
               ),
-              SizedBox(height: 20.0),
-              WeekDayPicker(),
+              SizedBox(height: 30.0),
+              WeekDayPicker(
+                days: habit.selectedDays,
+                onDayTap: (days) {
+                  updateSelectedDays(days);
+                },
+              ),
+              SizedBox(height: 30.0),
+              Container(
+                height: 100.0,
+                color: Colors.blue,
+              ),
+              FlatButton(
+                color: kGreenColor,
+                child: Text('Save'),
+                onPressed: () {
+                  Navigator.pop(context, widget.onSave(habit));
+                },
+              )
             ],
           ),
         ),
