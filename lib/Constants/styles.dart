@@ -87,3 +87,11 @@ TextStyle get kHomePageCardTitleDark {
     fontWeight: FontWeight.w600,
   );
 }
+
+TextStyle get kTextFieldPlaceHolderLabel {
+  return GoogleFonts.roboto(
+    color: textColor.withOpacity(0.87),
+    fontSize: 20.0,
+    fontWeight: FontWeight.w600,
+  );
+}

@@ -8,8 +8,7 @@ import 'Views/home_page_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key, this.title}) : super(key: key);
-  final String title;
+  static String id = 'HomeScreen';
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -22,8 +21,10 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    dummy.add(
-        Habit(title: 'Meditation', description: 'Start the day with calm'));
+    dummy.add(Habit(
+      title: 'Meditation',
+      description: 'Start the day with calm',
+    ));
   }
 
   @override
@@ -70,10 +71,7 @@ class _HomePageState extends State<HomePage> {
           Navigator.push(
             context,
             CupertinoPageRoute(
-                builder: (context) => CreateHabbit(
-                      onSave: addHabitCallBack,
-                    ),
-                fullscreenDialog: true),
+                builder: (context) => CreateHabbit(onSave: addHabitCallBack)),
           );
         },
       ),
