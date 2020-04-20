@@ -1,18 +1,42 @@
-
 import 'package:flutter/material.dart';
 
+enum WeekDay { monday, tuesday, wednesday, thursday, friday, saturday, sunday }
+
+extension WeekDayExtension on WeekDay {
+  String get abbrv {
+    switch (this) {
+      case WeekDay.monday:
+        return 'Mon';
+      case WeekDay.tuesday:
+        return 'Tue';
+      case WeekDay.wednesday:
+        return 'Wed';
+      case WeekDay.thursday:
+        return 'Thu';
+      case WeekDay.friday:
+        return 'Fri';
+      case WeekDay.saturday:
+        return 'Sat';
+      case WeekDay.sunday:
+        return 'Sun';
+    }
+
+    return '';
+  }
+}
+
 class Habit {
-	String title;
-	String description;
-	// Color habitColor;
+  String title;
+  String description;
+  // Color habitColor;
 
-	List<int> days;
-	List<int> timeOfDays;
+  Map<WeekDay, bool> selectedDays;
+  List<int> timeOfDays;
 
-	int currentStreak;
-	int bestStreak;
+  int currentStreak;
+  int bestStreak;
 
-	List<DateTime> checkIns;
+  List<DateTime> checkIns;
 
-	Habit({@required this.title, this.description});
+  Habit({@required this.title, this.description});
 }

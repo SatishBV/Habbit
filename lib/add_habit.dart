@@ -4,6 +4,7 @@ import 'package:habbit/Views/curved_sheet_view.dart';
 import 'Constants/styles.dart';
 import 'Models/habit.dart';
 import 'Views/text_field_view.dart';
+import 'Views/day_picker.dart';
 
 class CreateHabbit extends StatefulWidget {
   final Function onSave;
@@ -67,15 +68,17 @@ class _CreateHabitState extends State<CreateHabbit> {
                 },
               ),
               SizedBox(height: 20.0),
-              Container(
-                // Implement choice chip for days of the week
-                color: Colors.blue,
-                height: 100.0,
-              )
+              WeekDayPicker(),
             ],
           ),
         ),
       ),
     );
+  }
+
+  void updateSelectedDays(Map<WeekDay, bool> days) {
+    setState(() {
+      habit.selectedDays = days;
+    });
   }
 }

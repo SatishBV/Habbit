@@ -66,7 +66,7 @@ TextStyle get kTitleStyle {
 
 TextStyle get kTitleStyleActive {
   return GoogleFonts.poppins(
-    color: kPrimaryBlackColor.withOpacity(0.87),
+    color: kPrimaryBlackColor,
     fontSize: 25.0,
     fontWeight: FontWeight.w600,
   );
@@ -82,7 +82,7 @@ TextStyle get kHomePageCardTitle {
 
 TextStyle get kHomePageCardTitleDark {
   return GoogleFonts.roboto(
-    color: kPrimaryBlackColor.withOpacity(0.87),
+    color: kPrimaryBlackColor,
     fontSize: 25.0,
     fontWeight: FontWeight.w600,
   );

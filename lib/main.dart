@@ -22,7 +22,7 @@ class Habbit extends StatelessWidget {
             ),
           ),
           labelStyle: kTextFieldPlaceHolderStyle,
-          helperStyle: kTextFieldPlaceHolderStyle,
+          helperStyle: kCaptionStyle,
           contentPadding: EdgeInsets.only(bottom: 0.0),
         ),
       ),
