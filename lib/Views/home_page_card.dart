@@ -75,7 +75,7 @@ class _HomePageCardState extends State<HomePageCard> {
                     ),
                     Text(
                       widget.habit.description,
-                      style: kDayLabel,
+                      style: kCaptionStyle,
                     )
                   ],
                 ),

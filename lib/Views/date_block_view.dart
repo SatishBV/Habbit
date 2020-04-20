@@ -30,8 +30,8 @@ class DateBlockView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(getDayText(), style: isActive ? kDayLabelActive : kDayLabel),
-            Text(getDateForDay(dayOfWeek), style: isActive ? kDateLabelActive : kDateLabel),
+            Text(getDayText(), style: isActive ? kCaptionStyleActive : kCaptionStyle),
+            Text(getDateForDay(dayOfWeek), style: isActive ? kTitleStyleActive : kTitleStyle),
           ],
         ),
       ),

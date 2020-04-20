@@ -40,7 +40,7 @@ TextStyle get kMonthYearLabel {
   );
 }
 
-TextStyle get kDayLabel {
+TextStyle get kCaptionStyle {
   return GoogleFonts.poppins(
     color: textColor.withOpacity(0.87),
     fontSize: 12.0,
@@ -48,7 +48,7 @@ TextStyle get kDayLabel {
   );
 }
 
-TextStyle get kDayLabelActive {
+TextStyle get kCaptionStyleActive {
   return GoogleFonts.poppins(
     color: kPrimaryBlackColor.withOpacity(0.87),
     fontSize: 12.0,
@@ -56,7 +56,7 @@ TextStyle get kDayLabelActive {
   );
 }
 
-TextStyle get kDateLabel {
+TextStyle get kTitleStyle {
   return GoogleFonts.poppins(
     color: textColor.withOpacity(0.87),
     fontSize: 25.0,
@@ -64,7 +64,7 @@ TextStyle get kDateLabel {
   );
 }
 
-TextStyle get kDateLabelActive {
+TextStyle get kTitleStyleActive {
   return GoogleFonts.poppins(
     color: kPrimaryBlackColor.withOpacity(0.87),
     fontSize: 25.0,
@@ -88,10 +88,18 @@ TextStyle get kHomePageCardTitleDark {
   );
 }
 
-TextStyle get kTextFieldPlaceHolderLabel {
+TextStyle get kTextFieldPlaceHolderStyle {
+  return GoogleFonts.roboto(
+    color: textColor.withOpacity(0.50),
+    fontSize: 12.0,
+    fontWeight: FontWeight.w600,
+  );
+}
+
+TextStyle get kTextFieldTextStyle {
   return GoogleFonts.roboto(
     color: textColor.withOpacity(0.87),
-    fontSize: 20.0,
+    fontSize: 18.0,
     fontWeight: FontWeight.w600,
   );
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:habbit/add_habit.dart';
 import 'home_page.dart';
 import 'Constants/styles.dart';
 
@@ -12,13 +11,23 @@ class Habbit extends StatelessWidget {
     return MaterialApp(
       title: 'Habbit',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
+      theme: ThemeData.dark().copyWith(
         primaryColor: kSecondaryBlackColor,
-        scaffoldBackgroundColor: kPrimaryBlackColor,
         accentColor: kGreenColor,
+        scaffoldBackgroundColor: kPrimaryBlackColor,
+        inputDecorationTheme: InputDecorationTheme(
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: textColor,
+            ),
+          ),
+          labelStyle: kTextFieldPlaceHolderStyle,
+          helperStyle: kTextFieldPlaceHolderStyle,
+          contentPadding: EdgeInsets.only(bottom: 0.0),
+        ),
       ),
       home: HomePage(),
-      routes: { 
+      routes: {
         HomePage.id: (context) => HomePage(),
       },
     );

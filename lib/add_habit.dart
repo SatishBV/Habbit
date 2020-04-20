@@ -15,7 +15,14 @@ class CreateHabbit extends StatefulWidget {
 
 class _CreateHabitState extends State<CreateHabbit> {
   Habit habit;
-  TextEditingController _textEditingController = TextEditingController();
+  TextEditingController _nameTextEditingController = TextEditingController();
+  TextEditingController _descriptionEditingController = TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _nameTextEditingController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,70 +42,88 @@ class _CreateHabitState extends State<CreateHabbit> {
         ),
         elevation: 0.0,
       ),
-      body: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 20.0,
-              vertical: 10.0,
-            ),
-            child: Container(
-              alignment: Alignment.centerLeft,
-              child:
-                  Text('Create a\nnew Habbit', style: kAddHabitPageTitleLabel),
-            ),
-          ),
-          SizedBox(
-            height: 20.0,
-          ),
-          Expanded(
-            child: ClipRRect(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(30.0),
-                topRight: Radius.circular(30.0),
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(new FocusNode());
+        },
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20.0,
+                vertical: 10.0,
               ),
               child: Container(
-                height: 500.0,
-                decoration: BoxDecoration(
-                  color: kCardColor,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30.0),
-                    topRight: Radius.circular(30.0),
-                  ),
-                ),
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 20.0,
-                        vertical: 30.0,
-                      ),
-                      child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextField(
-                              controller: _textEditingController,
-                              style: kTextFieldPlaceHolderLabel,
-                              decoration: InputDecoration(
-                                labelStyle: kTextFieldPlaceHolderLabel,
-                                labelText: 'Name',
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: textColor,
-                                  ),
-                                ),
-                                contentPadding: EdgeInsets.only(bottom: 6.0),
-                              ),
-                              onSubmitted: (String value) {}),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                alignment: Alignment.centerLeft,
+                child: Text('Create a\nnew Habbit',
+                    style: kAddHabitPageTitleLabel),
               ),
             ),
-          )
-        ],
+            SizedBox(
+              height: 20.0,
+            ),
+            Expanded(
+              child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30.0),
+                  topRight: Radius.circular(30.0),
+                ),
+                child: Container(
+                  height: 500.0,
+                  decoration: BoxDecoration(
+                    color: kPrimaryBlackColor,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30.0),
+                      topRight: Radius.circular(30.0),
+                    ),
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(height: 20.0),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 20.0,
+                        ),
+                        child: Center(
+                          child: TextField(
+                            controller: _nameTextEditingController,
+                            style: kTextFieldTextStyle,
+                            autocorrect: false,
+                            decoration:
+                                InputDecoration().copyWith(helperText: 'Name'),
+                            onSubmitted: (String value) {},
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 10.0),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 20.0,
+                        ),
+                        child: Center(
+                          child: TextField(
+                            controller: _descriptionEditingController,
+                            style: kTextFieldTextStyle,
+                            autocorrect: false,
+                            decoration: InputDecoration()
+                                .copyWith(helperText: 'Description'),
+                            onSubmitted: (String value) {},
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 20.0),
+                      Container(
+                        // Implement choice chip for days of the week
+                        color: Colors.blue,
+                        height: 100.0,
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
