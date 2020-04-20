@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:habbit/Views/curved_sheet_view.dart';
 import 'Constants/styles.dart';
 import 'Models/habit.dart';
+import 'Views/text_field_view.dart';
 
 class CreateHabbit extends StatefulWidget {
   final Function onSave;
@@ -26,9 +28,6 @@ class _CreateHabitState extends State<CreateHabbit> {
 
   @override
   Widget build(BuildContext context) {
-    habit = Habit(title: 'Yoga');
-    habit.description = 'Get flexing';
-
     return Scaffold(
       backgroundColor: kGreenColor,
       appBar: AppBar(
@@ -43,88 +42,39 @@ class _CreateHabitState extends State<CreateHabbit> {
         elevation: 0.0,
       ),
       body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).requestFocus(new FocusNode());
-        },
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20.0,
-                vertical: 10.0,
-              ),
-              child: Container(
-                alignment: Alignment.centerLeft,
-                child: Text('Create a\nnew Habbit',
-                    style: kAddHabitPageTitleLabel),
-              ),
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            Expanded(
-              child: ClipRRect(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30.0),
-                  topRight: Radius.circular(30.0),
+          onTap: () {
+            FocusScope.of(context).requestFocus(new FocusNode());
+          },
+          child: CurvedSheet(
+            title: 'Create a\nnew Habbit',
+            backgroundColor: kPrimaryBlackColor,
+            child: Column(
+              children: <Widget>[
+                SizedBox(height: 20.0),
+                HabbitTextField(
+                  controller: _nameTextEditingController,
+                  helperText: 'Name',
+                  onFinish: (value) {
+                    habit.title = value;
+                  },
                 ),
-                child: Container(
-                  height: 500.0,
-                  decoration: BoxDecoration(
-                    color: kPrimaryBlackColor,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30.0),
-                      topRight: Radius.circular(30.0),
-                    ),
-                  ),
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(height: 20.0),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 20.0,
-                        ),
-                        child: Center(
-                          child: TextField(
-                            controller: _nameTextEditingController,
-                            style: kTextFieldTextStyle,
-                            autocorrect: false,
-                            decoration:
-                                InputDecoration().copyWith(helperText: 'Name'),
-                            onSubmitted: (String value) {},
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 10.0),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 20.0,
-                        ),
-                        child: Center(
-                          child: TextField(
-                            controller: _descriptionEditingController,
-                            style: kTextFieldTextStyle,
-                            autocorrect: false,
-                            decoration: InputDecoration()
-                                .copyWith(helperText: 'Description'),
-                            onSubmitted: (String value) {},
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20.0),
-                      Container(
-                        // Implement choice chip for days of the week
-                        color: Colors.blue,
-                        height: 100.0,
-                      )
-                    ],
-                  ),
+                SizedBox(height: 10.0),
+                HabbitTextField(
+                  controller: _descriptionEditingController,
+                  helperText: 'Description',
+                  onFinish: (value) {
+                    habit.description = value;
+                  },
                 ),
-              ),
-            )
-          ],
-        ),
-      ),
+                SizedBox(height: 20.0),
+                Container(
+                  // Implement choice chip for days of the week
+                  color: Colors.blue,
+                  height: 100.0,
+                )
+              ],
+            ),
+          )),
     );
   }
 }
