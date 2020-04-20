@@ -42,39 +42,40 @@ class _CreateHabitState extends State<CreateHabbit> {
         elevation: 0.0,
       ),
       body: GestureDetector(
-          onTap: () {
-            FocusScope.of(context).requestFocus(new FocusNode());
-          },
-          child: CurvedSheet(
-            title: 'Create a\nnew Habbit',
-            backgroundColor: kPrimaryBlackColor,
-            child: Column(
-              children: <Widget>[
-                SizedBox(height: 20.0),
-                HabbitTextField(
-                  controller: _nameTextEditingController,
-                  helperText: 'Name',
-                  onFinish: (value) {
-                    habit.title = value;
-                  },
-                ),
-                SizedBox(height: 10.0),
-                HabbitTextField(
-                  controller: _descriptionEditingController,
-                  helperText: 'Description',
-                  onFinish: (value) {
-                    habit.description = value;
-                  },
-                ),
-                SizedBox(height: 20.0),
-                Container(
-                  // Implement choice chip for days of the week
-                  color: Colors.blue,
-                  height: 100.0,
-                )
-              ],
-            ),
-          )),
+        onTap: () {
+          FocusScope.of(context).requestFocus(new FocusNode());
+        },
+        child: CurvedSheet(
+          title: 'Create a\nnew Habbit',
+          backgroundColor: kPrimaryBlackColor,
+          child: Column(
+            children: <Widget>[
+              SizedBox(height: 20.0),
+              HabbitTextField(
+                controller: _nameTextEditingController,
+                helperText: 'Name',
+                onFinish: (value) {
+                  habit.title = value;
+                },
+              ),
+              SizedBox(height: 10.0),
+              HabbitTextField(
+                controller: _descriptionEditingController,
+                helperText: 'Description',
+                onFinish: (value) {
+                  habit.description = value;
+                },
+              ),
+              SizedBox(height: 20.0),
+              Container(
+                // Implement choice chip for days of the week
+                color: Colors.blue,
+                height: 100.0,
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
