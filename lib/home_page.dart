@@ -21,10 +21,10 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    dummy.add(Habit(
-      title: 'Meditation',
-      description: 'Start the day with calm',
-    ));
+    Habit tempHabit = Habit();
+    tempHabit.title = 'Meditation';
+    tempHabit.description = 'Start the day with calm';
+    dummy.add(tempHabit);
   }
 
   @override
