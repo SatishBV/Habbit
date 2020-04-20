@@ -84,7 +84,7 @@ class _CreateHabitState extends State<CreateHabbit> {
               SizedBox(height: 30.0),
               Container(
                 height: 100.0,
-                color: Colors.blue,
+                // color: Colors.blue,
               ),
               FlatButton(
                 color: kGreenColor,

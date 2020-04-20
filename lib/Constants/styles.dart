@@ -24,9 +24,9 @@ TextStyle get kScreenTitleLabel {
 
 TextStyle get kAddHabitPageTitleLabel {
 	return GoogleFonts.poppins(
-		color: textColor,
-		fontWeight: FontWeight.w500,
-		fontSize: 25.0,
+		color: textColor.withOpacity(0.87),
+		fontWeight: FontWeight.w700,
+		fontSize: 30.0,
 		height: 1.4,
 		letterSpacing: 1.5,
 	);
