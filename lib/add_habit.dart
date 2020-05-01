@@ -62,17 +62,11 @@ class _CreateHabitState extends State<CreateHabbit> {
               HabbitTextField(
                 controller: _nameTextEditingController,
                 placeHolder: 'Name',
-                onFinish: (value) {
-                  habit.title = value;
-                },
               ),
               SizedBox(height: 20.0),
               HabbitTextField(
                 controller: _descriptionEditingController,
                 placeHolder: 'Description',
-                onFinish: (value) {
-                  habit.description = value;
-                },
               ),
               SizedBox(height: 20.0),
               WeekDayPicker(
@@ -115,9 +109,6 @@ class _CreateHabitState extends State<CreateHabbit> {
                         ],
                       ),
                     ),
-                    // SizedBox(
-                    //   width: 40.0,
-                    // ),
                     Container(
                       height: 60.0,
                       width: 167.0,
@@ -152,15 +143,15 @@ class _CreateHabitState extends State<CreateHabbit> {
               SizedBox(
                 height: 20.0,
               ),
-              Container(
-                height: 100.0,
-                // color: Colors.blue,
-              ),
               FlatButton(
                 color: kGreenColor,
                 child: Text('Save'),
                 onPressed: () {
-                  Navigator.pop(context, widget.onSave(habit));
+                  if(validateInformation()) {
+                    Navigator.pop(context, widget.onSave(habit));
+                  } else {
+                    
+                  }
                 },
               )
             ],
@@ -174,5 +165,18 @@ class _CreateHabitState extends State<CreateHabbit> {
     setState(() {
       habit.selectedDays = days;
     });
+  }
+
+  bool validateInformation() {
+    habit.title = _nameTextEditingController.text;
+    habit.description = _descriptionEditingController.text;
+
+    if(habit.title.isEmpty) {
+      return false;
+    } else if(!habit.selectedDays.values.contains(true)){
+      return false;
+    } else {
+      return true;
+    }
   }
 }

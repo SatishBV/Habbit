@@ -1,3 +1,7 @@
+import 'dart:ui';
+import 'package:habbit/Constants/styles.dart';
+import 'package:habbit/Utils/date_util.dart';
+
 enum WeekDay { monday, tuesday, wednesday, thursday, friday, saturday, sunday }
 
 extension WeekDayExtension on WeekDay {
@@ -26,7 +30,7 @@ extension WeekDayExtension on WeekDay {
 class Habit {
   String title = '';
   String description = '';
-  // Color habitColor;
+  Color habitColor = kGreenColor;
 
   Map<WeekDay, bool> selectedDays = new Map();
   List<int> timeOfDays = [];
@@ -34,11 +38,36 @@ class Habit {
   int currentStreak;
   int bestStreak;
 
-  List<DateTime> checkIns;
+  List<DateTime> checkIns = [];
 
   Habit() {
     for(WeekDay day in WeekDay.values) {
       selectedDays[day] = false;
     }
+  }
+
+  int scheduledCheckIns() {
+    return selectedDays.keys.length;
+  }
+
+  int weeklyCheckIns() {
+    int weeklyCheckins = 0;
+
+    DateTime weekStartDate = DateUtils.weekStart(DateTime.now());
+    for(int i = 0; i < 7; i++) {
+      DateTime dateTime = weekStartDate.add(Duration(days: i));
+      if(checkIns.contains(dateTime)) {
+        weeklyCheckins += 1;
+      }
+    }
+    return weeklyCheckins;
+  }
+
+  double weeklyProgress() {
+    return weeklyCheckIns()/scheduledCheckIns();
+  }
+
+  void addCheckIn(DateTime dateTime) {
+    checkIns.add(dateTime);
   }
 }

@@ -28,60 +28,65 @@ class _HomePageCardState extends State<HomePageCard> {
           color: kCardColor,
           borderRadius: BorderRadius.circular(10.0),
         ),
-        child: Center(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _isSelected = !_isSelected;
-                    });
-                  },
-                  child: Container(
-                      height: 40.0,
-                      width: 40.0,
-                      child: _isSelected
-                          ? Center(
-                              child: FaIcon(
-                                FontAwesomeIcons.solidCheckCircle,
-                                color: kGreenColor,
-                                size: 30.0,
-                              ),
-                            )
-                          : Center(
-                              child: FaIcon(
-                                FontAwesomeIcons.solidCircle,
-                                color: kPrimaryBlackColor,
-                                size: 30.0,
-                              ),
-                            )),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            Expanded(
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _isSelected = !_isSelected;
+                  });
+                },
+                child: Container(
+                    height: 40.0,
+                    width: 40.0,
+                    child: _isSelected
+                        ? Center(
+                            child: FaIcon(
+                              FontAwesomeIcons.solidCheckCircle,
+                              color: kGreenColor,
+                              size: 30.0,
+                            ),
+                          )
+                        : Center(
+                            child: FaIcon(
+                              FontAwesomeIcons.solidCircle,
+                              color: kPrimaryBlackColor,
+                              size: 30.0,
+                            ),
+                          )),
+              ),
+            ),
+            Expanded(
+              flex: 3,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    widget.habit.title,
+                    style: kHomePageCardTitle,
+                  ),
+                  SizedBox(
+                    height: 6.0,
+                  ),
+                  Text(
+                    widget.habit.description,
+                    style: kCaptionStyle,
+                  )
+                ],
+              ),
+            ),
+            Expanded(
+              flex: 2,
+              child: Container(
+                child: Center(
+                  child: Text('5/7'),
                 ),
               ),
-              Expanded(
-                flex: 3,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      widget.habit.title,
-                      style: kHomePageCardTitle,
-                    ),
-                    SizedBox(
-                      height: 6.0,
-                    ),
-                    Text(
-                      widget.habit.description,
-                      style: kCaptionStyle,
-                    )
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

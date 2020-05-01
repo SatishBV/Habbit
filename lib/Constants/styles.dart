@@ -68,15 +68,7 @@ TextStyle get kTitleStyle {
 TextStyle get kHomePageCardTitle {
   return GoogleFonts.roboto(
     color: textColor.withOpacity(0.87),
-    fontSize: 25.0,
-    fontWeight: FontWeight.w600,
-  );
-}
-
-TextStyle get kHomePageCardTitleDark {
-  return GoogleFonts.roboto(
-    color: kPrimaryBlackColor,
-    fontSize: 25.0,
+    fontSize: 20.0,
     fontWeight: FontWeight.w600,
   );
 }
