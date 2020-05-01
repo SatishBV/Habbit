@@ -47,7 +47,7 @@ class Habit {
   }
 
   int scheduledCheckIns() {
-    return selectedDays.keys.length;
+    return selectedDays.values.where((day) => day == true).length;
   }
 
   int weeklyCheckIns() {

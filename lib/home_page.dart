@@ -56,6 +56,9 @@ class _HomePageState extends State<HomePage> {
         itemBuilder: (context, index) {
           return HomePageCard(
             habit: dummy[index],
+            onDeleteHabit: (habit) {
+              deleteHabitCallBack(habit);
+            },
           );
         },
       ),
@@ -86,6 +89,14 @@ class _HomePageState extends State<HomePage> {
   void addHabitCallBack(Habit habit) {
     setState(() {
       dummy.add(habit);
+    });
+  }
+
+  void deleteHabitCallBack(Habit habit) {
+    setState(() {
+      if(dummy.contains(habit)) {
+        dummy.remove(habit);
+      }
     });
   }
 }
