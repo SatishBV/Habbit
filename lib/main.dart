@@ -16,14 +16,17 @@ class Habbit extends StatelessWidget {
         accentColor: kGreenColor,
         scaffoldBackgroundColor: kPrimaryBlackColor,
         inputDecorationTheme: InputDecorationTheme(
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
-              color: textColor,
+          border: new OutlineInputBorder(
+            borderRadius: const BorderRadius.all(
+              const Radius.circular(4.0),
+            ),
+            borderSide: new BorderSide(
+              color: kCardColor,
+              width: 3.0,
             ),
           ),
-          labelStyle: kTextFieldPlaceHolderStyle,
-          helperStyle: kCaptionStyle,
-          contentPadding: EdgeInsets.only(bottom: 0.0),
+          labelStyle: kTextFieldTextStyle.copyWith(color: textColor.withOpacity(0.50), fontSize: 15.0),
+          contentPadding: EdgeInsets.only(left: 8.0, bottom: 0.0),
         ),
       ),
       home: HomePage(),

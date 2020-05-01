@@ -58,39 +58,100 @@ class _CreateHabitState extends State<CreateHabbit> {
           backgroundColor: kPrimaryBlackColor,
           child: Column(
             children: <Widget>[
-              SizedBox(height: 20.0),
+              SizedBox(height: 40.0),
               HabbitTextField(
                 controller: _nameTextEditingController,
-                helperText: 'Name',
-                onFinish: (value) {
-                  habit.title = value;
-                },
+                placeHolder: 'Name',
               ),
-              SizedBox(height: 10.0),
+              SizedBox(height: 20.0),
               HabbitTextField(
                 controller: _descriptionEditingController,
-                helperText: 'Description',
-                onFinish: (value) {
-                  habit.description = value;
-                },
+                placeHolder: 'Description',
               ),
-              SizedBox(height: 30.0),
+              SizedBox(height: 20.0),
               WeekDayPicker(
                 days: habit.selectedDays,
                 onDayTap: (days) {
                   updateSelectedDays(days);
                 },
               ),
-              SizedBox(height: 30.0),
-              Container(
-                height: 100.0,
-                // color: Colors.blue,
+              SizedBox(height: 20.0),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Container(
+                      height: 60.0,
+                      width: 167.0,
+                      decoration: BoxDecoration(
+                        color: kCardColor,
+                        borderRadius: BorderRadius.circular(4.0),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            'Color',
+                            style: kPickerTitleStyle,
+                          ),
+                          SizedBox(
+                            width: 20.0,
+                          ),
+                          Container(
+                            height: 30.0,
+                            width: 30.0,
+                            decoration: BoxDecoration(
+                              color: kGreenColor,
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      height: 60.0,
+                      width: 167.0,
+                      decoration: BoxDecoration(
+                        color: kCardColor,
+                        borderRadius: BorderRadius.circular(4.0),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            'Icon',
+                            style: kPickerTitleStyle,
+                          ),
+                          SizedBox(
+                            width: 20.0,
+                          ),
+                          Container(
+                            height: 30.0,
+                            width: 30.0,
+                            decoration: BoxDecoration(
+                              color: kGreenColor,
+                              borderRadius: BorderRadius.circular(15.0),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 20.0,
               ),
               FlatButton(
                 color: kGreenColor,
                 child: Text('Save'),
                 onPressed: () {
-                  Navigator.pop(context, widget.onSave(habit));
+                  if(validateInformation()) {
+                    Navigator.pop(context, widget.onSave(habit));
+                  } else {
+                    
+                  }
                 },
               )
             ],
@@ -104,5 +165,18 @@ class _CreateHabitState extends State<CreateHabbit> {
     setState(() {
       habit.selectedDays = days;
     });
+  }
+
+  bool validateInformation() {
+    habit.title = _nameTextEditingController.text;
+    habit.description = _descriptionEditingController.text;
+
+    if(habit.title.isEmpty) {
+      return false;
+    } else if(!habit.selectedDays.values.contains(true)){
+      return false;
+    } else {
+      return true;
+    }
   }
 }
