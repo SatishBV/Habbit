@@ -24,8 +24,13 @@ class DayCircle extends StatelessWidget {
           child: Text(
             day.abbrv,
             style: isActive
-                ? kTitleStyleActive.copyWith(fontSize: 18.0)
-                : kTitleStyle.copyWith(fontSize: 18.0),
+                ? kTitleStyle.copyWith(
+                    color: kPrimaryBlackColor,
+                    fontSize: 18.0,
+                  )
+                : kTitleStyle.copyWith(
+                    fontSize: 18.0,
+                  ),
           ),
         ),
       ),

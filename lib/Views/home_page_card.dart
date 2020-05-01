@@ -23,7 +23,7 @@ class _HomePageCardState extends State<HomePageCard> {
     return ListTile(
       title: Container(
         margin: EdgeInsets.all(10.0),
-        height: 120.0,
+        height: 80.0,
         decoration: BoxDecoration(
           color: kCardColor,
           borderRadius: BorderRadius.circular(10.0),
@@ -41,8 +41,8 @@ class _HomePageCardState extends State<HomePageCard> {
                     });
                   },
                   child: Container(
-                      height: 60.0,
-                      width: 60.0,
+                      height: 40.0,
+                      width: 40.0,
                       child: _isSelected
                           ? Center(
                               child: FaIcon(

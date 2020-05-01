@@ -40,6 +40,15 @@ TextStyle get kMonthYearLabel {
   );
 }
 
+TextStyle get kPickerTitleStyle {
+  return GoogleFonts.roboto(
+    color: textColor.withOpacity(0.87),
+    fontSize: 20.0,
+    fontWeight: FontWeight.w500,
+    letterSpacing: 1.3
+  );
+}
+
 TextStyle get kCaptionStyle {
   return GoogleFonts.poppins(
     color: textColor.withOpacity(0.87),
@@ -48,25 +57,9 @@ TextStyle get kCaptionStyle {
   );
 }
 
-TextStyle get kCaptionStyleActive {
-  return GoogleFonts.poppins(
-    color: kPrimaryBlackColor.withOpacity(0.87),
-    fontSize: 12.0,
-    fontWeight: FontWeight.w400,
-  );
-}
-
 TextStyle get kTitleStyle {
   return GoogleFonts.poppins(
     color: textColor.withOpacity(0.87),
-    fontSize: 25.0,
-    fontWeight: FontWeight.w600,
-  );
-}
-
-TextStyle get kTitleStyleActive {
-  return GoogleFonts.poppins(
-    color: kPrimaryBlackColor,
     fontSize: 25.0,
     fontWeight: FontWeight.w600,
   );
@@ -99,7 +92,7 @@ TextStyle get kTextFieldPlaceHolderStyle {
 TextStyle get kTextFieldTextStyle {
   return GoogleFonts.roboto(
     color: textColor.withOpacity(0.87),
-    fontSize: 18.0,
+    fontSize: 16.0,
     fontWeight: FontWeight.w600,
   );
 }

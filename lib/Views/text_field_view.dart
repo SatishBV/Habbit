@@ -4,12 +4,12 @@ import 'package:habbit/Constants/styles.dart';
 class HabbitTextField extends StatelessWidget {
   HabbitTextField({
     @required this.controller,
-    @required this.helperText,
+    @required this.placeHolder,
     @required this.onFinish,
   });
 
   final TextEditingController controller;
-  final String helperText;
+  final String placeHolder;
   final Function onFinish;
 
   @override
@@ -18,15 +18,18 @@ class HabbitTextField extends StatelessWidget {
       padding: EdgeInsets.symmetric(
         horizontal: 20.0,
       ),
-      child: Center(
-        child: TextField(
-          controller: controller,
-          style: kTextFieldTextStyle,
-          autocorrect: false,
-          decoration: InputDecoration().copyWith(helperText: helperText),
-          onSubmitted: (String value) {
-            onFinish(value);
-          },
+      child: Container(
+        color: kCardColor,
+        child: Center(
+          child: TextField(
+            controller: controller,
+            style: kTextFieldTextStyle,
+            decoration: InputDecoration().copyWith(labelText: placeHolder,),
+            autocorrect: false,
+            onSubmitted: (String value) {
+              onFinish(value);
+            },
+          ),
         ),
       ),
     );
