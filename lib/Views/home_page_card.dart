@@ -39,11 +39,11 @@ class _HomePageCardState extends State<HomePageCard> {
           height: 80.0,
           padding: EdgeInsets.only(right: 28.0),
           alignment: AlignmentDirectional.centerEnd,
-          color: Colors.red,
-          child: Icon(
-            Icons.delete_forever,
-            color: Colors.white,
+          decoration: BoxDecoration(
+            color: Colors.red,
+            borderRadius: BorderRadius.circular(10.0)
           ),
+          child: FaIcon(FontAwesomeIcons.minusCircle),
         ),
         child: Container(
           margin: EdgeInsets.symmetric(vertical: 10.0),

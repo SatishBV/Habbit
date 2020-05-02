@@ -3,11 +3,12 @@ import 'package:habbit/Constants/styles.dart';
 import 'package:habbit/Models/habit.dart';
 
 class DayCircle extends StatelessWidget {
-  DayCircle({@required this.day, @required this.isActive, this.onTap});
+  DayCircle({@required this.day, @required this.accentColor, @required this.isActive, this.onTap});
 
   final WeekDay day;
   final Function onTap;
   final bool isActive;
+  final Color accentColor;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class DayCircle extends StatelessWidget {
         width: 50.0,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(25.0),
-          color: isActive ? kGreenColor : kCardColor,
+          color: isActive ? accentColor : kCardColor,
         ),
         child: Center(
           child: Text(

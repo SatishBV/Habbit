@@ -5,6 +5,7 @@ import 'Constants/styles.dart';
 import 'Models/habit.dart';
 import 'Views/text_field_view.dart';
 import 'Views/day_picker.dart';
+import 'Views/color_picker_card.dart';
 
 class CreateHabbit extends StatefulWidget {
   final Function onSave;
@@ -20,6 +21,7 @@ class _CreateHabitState extends State<CreateHabbit> {
   Habit habit;
   TextEditingController _nameTextEditingController = TextEditingController();
   TextEditingController _descriptionEditingController = TextEditingController();
+  Color _activeColor = kGreenColor;
 
   @override
   void initState() {
@@ -37,9 +39,9 @@ class _CreateHabitState extends State<CreateHabbit> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kGreenColor,
+      backgroundColor: _activeColor,
       appBar: AppBar(
-        backgroundColor: kGreenColor,
+        backgroundColor: _activeColor,
         leading: IconButton(
           icon: FaIcon(
             FontAwesomeIcons.arrowLeft,
@@ -71,6 +73,7 @@ class _CreateHabitState extends State<CreateHabbit> {
               SizedBox(height: 20.0),
               WeekDayPicker(
                 days: habit.selectedDays,
+                accentColor: _activeColor,
                 onDayTap: (days) {
                   updateSelectedDays(days);
                 },
@@ -81,33 +84,11 @@ class _CreateHabitState extends State<CreateHabbit> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    Container(
-                      height: 60.0,
-                      width: 167.0,
-                      decoration: BoxDecoration(
-                        color: kCardColor,
-                        borderRadius: BorderRadius.circular(4.0),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            'Color',
-                            style: kPickerTitleStyle,
-                          ),
-                          SizedBox(
-                            width: 20.0,
-                          ),
-                          Container(
-                            height: 30.0,
-                            width: 30.0,
-                            decoration: BoxDecoration(
-                              color: kGreenColor,
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
-                          ),
-                        ],
-                      ),
+                    ColorPickerCard(
+                      activeColor: _activeColor,
+                      onColorChanged: (color) {
+                        changeColor(color);
+                      },
                     ),
                     Container(
                       height: 60.0,
@@ -126,14 +107,10 @@ class _CreateHabitState extends State<CreateHabbit> {
                           SizedBox(
                             width: 20.0,
                           ),
-                          Container(
-                            height: 30.0,
-                            width: 30.0,
-                            decoration: BoxDecoration(
-                              color: kGreenColor,
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
-                          ),
+                          CircleAvatar(
+                            backgroundColor: _activeColor,
+                            radius: 15.0,
+                          )
                         ],
                       ),
                     ),
@@ -144,14 +121,12 @@ class _CreateHabitState extends State<CreateHabbit> {
                 height: 20.0,
               ),
               FlatButton(
-                color: kGreenColor,
+                color: _activeColor,
                 child: Text('Save'),
                 onPressed: () {
-                  if(validateInformation()) {
+                  if (validateInformation()) {
                     Navigator.pop(context, widget.onSave(habit));
-                  } else {
-                    
-                  }
+                  } else {}
                 },
               )
             ],
@@ -160,6 +135,8 @@ class _CreateHabitState extends State<CreateHabbit> {
       ),
     );
   }
+
+  void changeColor(Color color) => setState(() => _activeColor = color);
 
   void updateSelectedDays(Map<WeekDay, bool> days) {
     setState(() {
@@ -170,10 +147,11 @@ class _CreateHabitState extends State<CreateHabbit> {
   bool validateInformation() {
     habit.title = _nameTextEditingController.text;
     habit.description = _descriptionEditingController.text;
+    habit.habitColor = _activeColor;
 
-    if(habit.title.isEmpty) {
+    if (habit.title.isEmpty) {
       return false;
-    } else if(!habit.selectedDays.values.contains(true)){
+    } else if (!habit.selectedDays.values.contains(true)) {
       return false;
     } else {
       return true;
