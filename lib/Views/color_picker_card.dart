@@ -11,43 +11,45 @@ class ColorPickerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60.0,
-      width: 167.0,
+      height: 80.0,
       decoration: BoxDecoration(
         color: kCardColor,
-        borderRadius: BorderRadius.circular(4.0),
+        borderRadius: BorderRadius.circular(10.0),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Text(
-            'Color',
-            style: kPickerTitleStyle,
+          Padding(
+            padding: EdgeInsets.only(left: 16.0),
+            child: Text(
+              'Color',
+              style: kPickerTitleStyle,
+            ),
           ),
-          SizedBox(
-            width: 20.0,
-          ),
-          GestureDetector(
-            onTap: () {
-              showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: Text('Select a color'),
-                    content: SingleChildScrollView(
-                      child: BlockPicker(
-                        pickerColor: activeColor,
-                        onColorChanged: onColorChanged,
-                        availableColors: availableColors,
+          Padding(
+            padding: EdgeInsets.only(right: 16.0),
+            child: GestureDetector(
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Select a color'),
+                      content: SingleChildScrollView(
+                        child: BlockPicker(
+                          pickerColor: activeColor,
+                          onColorChanged: onColorChanged,
+                          availableColors: availableColors,
+                        ),
                       ),
-                    ),
-                  );
-                },
-              );
-            },
-            child: CircleAvatar(
-              backgroundColor: activeColor,
-              radius: 15.0,
+                    );
+                  },
+                );
+              },
+              child: CircleAvatar(
+                backgroundColor: activeColor,
+                radius: 20.0,
+              ),
             ),
           ),
         ],

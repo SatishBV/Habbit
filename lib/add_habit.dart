@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:habbit/Views/curved_sheet_view.dart';
 import 'Constants/styles.dart';
@@ -81,40 +82,50 @@ class _CreateHabitState extends State<CreateHabbit> {
               SizedBox(height: 20.0),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    ColorPickerCard(
-                      activeColor: _activeColor,
-                      onColorChanged: (color) {
-                        changeColor(color);
-                      },
-                    ),
-                    Container(
-                      height: 60.0,
-                      width: 167.0,
-                      decoration: BoxDecoration(
-                        color: kCardColor,
-                        borderRadius: BorderRadius.circular(4.0),
+                child: ColorPickerCard(
+                  activeColor: _activeColor,
+                  onColorChanged: (color) {
+                    changeColor(color);
+                  },
+                ),
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0),
+                child: Container(
+                  height: 80.0,
+                  decoration: BoxDecoration(
+                    color: kCardColor,
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(left: 16.0),
+                        child: Text(
+                          'Icon',
+                          style: kPickerTitleStyle,
+                        ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            'Icon',
-                            style: kPickerTitleStyle,
+                      Padding(
+                        padding: EdgeInsets.only(right: 16.0),
+                        child: CircleAvatar(
+                          backgroundColor: _activeColor,
+                          child: Image(
+                            image: AssetImage(
+                              'assets/images/activities/finance.png',
+                            ),
+                            width: 30.0,
+                            height: 30.0,
                           ),
-                          SizedBox(
-                            width: 20.0,
-                          ),
-                          CircleAvatar(
-                            backgroundColor: _activeColor,
-                            radius: 15.0,
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
+                          radius: 25.0,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
