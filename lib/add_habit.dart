@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:habbit/Constants/activity_icons.dart';
 import 'package:habbit/Views/curved_sheet_view.dart';
-import 'package:habbit/Views/icon_picker_dialog.dart';
+import 'Views/icon_picker_card.dart';
 import 'Constants/styles.dart';
 import 'Models/habit.dart';
 import 'Views/text_field_view.dart';
@@ -97,54 +97,12 @@ class _CreateHabitState extends State<CreateHabbit> {
                     ),
                     SizedBox(width: 20.0),
                     Expanded(
-                      child: Container(
-                        height: 70.0,
-                        decoration: BoxDecoration(
-                          color: kCardColor,
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Padding(
-                              padding: EdgeInsets.only(left: 16.0),
-                              child: Text(
-                                'Icon',
-                                style: kPickerTitleStyle,
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(right: 16.0),
-                              child: GestureDetector(
-                                onTap: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return IconPicker(
-                                        currentIcon: _activeIcon,
-                                        accentColor: _activeColor,
-                                        onIconChanged: (icon) {
-                                          changeIcon(icon);
-                                        },
-                                      );
-                                    },
-                                  );
-                                },
-                                child: CircleAvatar(
-                                  backgroundColor: _activeColor,
-                                  child: Image(
-                                    image: AssetImage(
-                                      _activeIcon.imagePath,
-                                    ),
-                                    width: 35.0,
-                                    height: 35.0,
-                                  ),
-                                  radius: 25.0,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
+                      child: IconPickerCard(
+                        activeIcon: _activeIcon,
+                        activeColor: _activeColor,
+                        onIconChanged: (icon) {
+                          changeIcon(icon);
+                        },
                       ),
                     )
                   ],
@@ -193,3 +151,4 @@ class _CreateHabitState extends State<CreateHabbit> {
     }
   }
 }
+
