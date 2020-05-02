@@ -134,7 +134,7 @@ class _CreateHabitState extends State<CreateHabbit> {
                                   backgroundColor: _activeColor,
                                   child: Image(
                                     image: AssetImage(
-                                      'assets/images/activities/pushups.png',
+                                      _activeIcon.imagePath,
                                     ),
                                     width: 35.0,
                                     height: 35.0,
