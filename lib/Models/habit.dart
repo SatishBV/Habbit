@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:habbit/Constants/activity_icons.dart';
 import 'package:habbit/Constants/styles.dart';
 import 'package:habbit/Utils/date_util.dart';
 
@@ -31,6 +32,7 @@ class Habit {
   String title = '';
   String description = '';
   Color habitColor = kGreenColor;
+  ActivityIcon icon;
 
   Map<WeekDay, bool> selectedDays = new Map();
   List<int> timeOfDays = [];

@@ -5,9 +5,10 @@ import 'package:habbit/Views/day_circle.dart';
 
 class WeekDayPicker extends StatefulWidget {
   final Map<WeekDay, bool> days;
+  final Color accentColor;
   final Function onDayTap;
 
-  WeekDayPicker({@required this.days, @required this.onDayTap});
+  WeekDayPicker({@required this.days, @required this.accentColor, @required this.onDayTap});
 
   @override
   _WeekDayPickerState createState() => _WeekDayPickerState();
@@ -46,6 +47,7 @@ class _WeekDayPickerState extends State<WeekDayPicker> {
       DayCircle circle = DayCircle(
         day: day,
         isActive: widget.days[day],
+        accentColor: widget.accentColor,
         onTap: () {
           setState(() {
             widget.days[day] = !widget.days[day];
