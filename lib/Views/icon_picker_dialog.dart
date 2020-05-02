@@ -47,12 +47,23 @@ class _IconPickerState extends State<IconPicker> {
                       widget.onIconChanged(currentIcon);
                     });
                   },
-                  child: CircleAvatar(
-                    backgroundColor: widget.accentColor,
-                    child: Image(
-                      image: AssetImage(ActivityIcon.values[index].imagePath),
-                      width: 35.0,
-                      height: 35.0,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50.0),
+                      border: Border.all(
+                        color: ActivityIcon.values[index] == currentIcon
+                            ? Colors.white
+                            : widget.accentColor,
+                        width: 2.0,
+                      ),
+                    ),
+                    child: CircleAvatar(
+                      backgroundColor: widget.accentColor,
+                      child: Image(
+                        image: AssetImage(ActivityIcon.values[index].imagePath),
+                        width: 35.0,
+                        height: 35.0,
+                      ),
                     ),
                   ),
                 );
