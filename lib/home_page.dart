@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:habbit/Constants/activity_icons.dart';
 import 'package:habbit/Models/habit.dart';
 import 'package:habbit/add_habit.dart';
 import 'Constants/styles.dart';
@@ -24,6 +25,8 @@ class _HomePageState extends State<HomePage> {
     Habit tempHabit = Habit();
     tempHabit.title = 'Meditation';
     tempHabit.description = 'Start the day with calm';
+    tempHabit.habitColor = Colors.blue;
+    tempHabit.icon = ActivityIcon.meditation;
     dummy.add(tempHabit);
   }
 

@@ -141,6 +141,7 @@ class _CreateHabitState extends State<CreateHabbit> {
     habit.title = _nameTextEditingController.text;
     habit.description = _descriptionEditingController.text;
     habit.habitColor = _activeColor;
+    habit.icon = _activeIcon;
 
     if (habit.title.isEmpty) {
       return false;
@@ -151,4 +152,3 @@ class _CreateHabitState extends State<CreateHabbit> {
     }
   }
 }
-
