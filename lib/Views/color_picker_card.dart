@@ -11,7 +11,7 @@ class ColorPickerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 70.0,
+      height: 55.0,
       decoration: BoxDecoration(
         color: kCardColor,
         borderRadius: BorderRadius.circular(10.0),
@@ -48,7 +48,7 @@ class ColorPickerCard extends StatelessWidget {
               },
               child: CircleAvatar(
                 backgroundColor: activeColor,
-                radius: 20.0,
+                radius: 15.0,
               ),
             ),
           ),

@@ -78,7 +78,7 @@ class _HomePageCardState extends State<HomePageCard> {
         background: taskDoneBackground(),
         secondaryBackground: taskDeleteBackground(),
         child: Container(
-          margin: EdgeInsets.symmetric(vertical: 10.0),
+          margin: EdgeInsets.symmetric(vertical: 2.0),
           height: 80.0,
           decoration: BoxDecoration(
             color: kCardColor,
@@ -111,13 +111,6 @@ class _HomePageCardState extends State<HomePageCard> {
                       widget.habit.title,
                       style: kHomePageCardTitle,
                     ),
-                    SizedBox(
-                      height: 6.0,
-                    ),
-                    Text(
-                      widget.habit.description,
-                      style: kCaptionStyle,
-                    )
                   ],
                 ),
               ),
@@ -160,7 +153,7 @@ class _HomePageCardState extends State<HomePageCard> {
 
   Widget taskDoneBackground() {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10.0),
+      margin: EdgeInsets.symmetric(vertical: 2.0),
       height: 80.0,
       padding: EdgeInsets.only(left: 28.0),
       alignment: AlignmentDirectional.centerStart,
@@ -177,7 +170,7 @@ class _HomePageCardState extends State<HomePageCard> {
 
   Widget taskDeleteBackground() {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10.0),
+      margin: EdgeInsets.symmetric(vertical: 2.0),
       height: 80.0,
       padding: EdgeInsets.only(right: 28.0),
       alignment: AlignmentDirectional.centerEnd,

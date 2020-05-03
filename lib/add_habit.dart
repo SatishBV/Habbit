@@ -22,7 +22,6 @@ class CreateHabbit extends StatefulWidget {
 class _CreateHabitState extends State<CreateHabbit> {
   Habit habit;
   TextEditingController _nameTextEditingController = TextEditingController();
-  TextEditingController _descriptionEditingController = TextEditingController();
   Color _activeColor = kGreenColor;
   ActivityIcon _activeIcon = ActivityIcon.none;
 
@@ -36,7 +35,6 @@ class _CreateHabitState extends State<CreateHabbit> {
   void dispose() {
     super.dispose();
     _nameTextEditingController.dispose();
-    _descriptionEditingController.dispose();
   }
 
   @override
@@ -48,7 +46,7 @@ class _CreateHabitState extends State<CreateHabbit> {
         leading: IconButton(
           icon: FaIcon(
             FontAwesomeIcons.arrowLeft,
-            color: textColor,
+            color: kPrimaryBlackColor,
           ),
           onPressed: () => Navigator.of(context).pop(),
         ),
@@ -59,7 +57,7 @@ class _CreateHabitState extends State<CreateHabbit> {
           FocusScope.of(context).requestFocus(new FocusNode());
         },
         child: CurvedSheet(
-          title: 'Create a\nnew Habbit',
+          title: 'Add a new Habbit',
           backgroundColor: kPrimaryBlackColor,
           child: Column(
             children: <Widget>[
@@ -67,11 +65,6 @@ class _CreateHabitState extends State<CreateHabbit> {
               HabbitTextField(
                 controller: _nameTextEditingController,
                 placeHolder: 'Name',
-              ),
-              SizedBox(height: 20.0),
-              HabbitTextField(
-                controller: _descriptionEditingController,
-                placeHolder: 'Description',
               ),
               SizedBox(height: 20.0),
               WeekDayPicker(
@@ -139,7 +132,6 @@ class _CreateHabitState extends State<CreateHabbit> {
 
   bool validateInformation() {
     habit.title = _nameTextEditingController.text;
-    habit.description = _descriptionEditingController.text;
     habit.habitColor = _activeColor;
     habit.icon = _activeIcon;
 

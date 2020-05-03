@@ -17,7 +17,7 @@ class IconPickerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 70.0,
+      height: 55.0,
       decoration: BoxDecoration(
         color: kCardColor,
         borderRadius: BorderRadius.circular(10.0),
@@ -55,10 +55,10 @@ class IconPickerCard extends StatelessWidget {
                   image: AssetImage(
                     activeIcon.imagePath,
                   ),
-                  width: 35.0,
-                  height: 35.0,
+                  width: 25.0,
+                  height: 25.0,
                 ),
-                radius: 25.0,
+                radius: 20.0,
               ),
             ),
           )
