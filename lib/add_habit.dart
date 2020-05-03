@@ -102,16 +102,36 @@ class _CreateHabitState extends State<CreateHabbit> {
                 ),
               ),
               SizedBox(
-                height: 20.0,
+                height: 40.0,
               ),
-              FlatButton(
-                color: _activeColor,
-                child: Text('Save'),
-                onPressed: () {
-                  if (validateInformation()) {
-                    Navigator.pop(context, widget.onSave(habit));
-                  } else {}
-                },
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0),
+                child: Row(
+                  // crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Expanded(
+                      child: ButtonTheme(
+                        height: 55.0,
+                        minWidth: 200.0,
+                        child: RaisedButton(
+                          elevation: 6.0,
+                          color: _activeColor,
+                          child: Text(
+                            'Save',
+                            style: kHomePageCardTitle.copyWith(
+                              color: kPrimaryBlackColor,
+                            ),
+                          ),
+                          onPressed: () {
+                            if (validateInformation()) {
+                              Navigator.pop(context, widget.onSave(habit));
+                            } else {}
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               )
             ],
           ),
