@@ -74,13 +74,30 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: kGreenColor,
         elevation: 6,
         onPressed: () {
-          Navigator.push(
-            context,
-            CupertinoPageRoute(
-                builder: (context) => CreateHabbit(onSave: addHabitCallBack)),
-          );
+          _settingModalBottomSheet(context);
         },
       ),
+    );
+  }
+
+  void _settingModalBottomSheet(context) {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      builder: (BuildContext bc) {
+        return DraggableScrollableSheet(
+          initialChildSize: 0.80,
+          maxChildSize: 0.8,
+          minChildSize: 0.25,
+          builder: (BuildContext context, ScrollController scrollController) {
+            return Container(
+              child: CreateHabbit(
+                onSave: addHabitCallBack,
+              ),
+            );
+          },
+        );
+      },
     );
   }
 
@@ -97,7 +114,7 @@ class _HomePageState extends State<HomePage> {
 
   void deleteHabitCallBack(Habit habit) {
     setState(() {
-      if(dummy.contains(habit)) {
+      if (dummy.contains(habit)) {
         dummy.remove(habit);
       }
     });

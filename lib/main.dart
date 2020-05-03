@@ -18,11 +18,7 @@ class Habbit extends StatelessWidget {
         inputDecorationTheme: InputDecorationTheme(
           border: new OutlineInputBorder(
             borderRadius: const BorderRadius.all(
-              const Radius.circular(4.0),
-            ),
-            borderSide: new BorderSide(
-              color: kCardColor,
-              width: 3.0,
+              const Radius.circular(10.0),
             ),
           ),
           labelStyle: kTextFieldTextStyle.copyWith(color: textColor.withOpacity(0.50), fontSize: 15.0),

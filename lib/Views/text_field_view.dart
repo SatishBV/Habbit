@@ -5,10 +5,12 @@ class HabbitTextField extends StatelessWidget {
   HabbitTextField({
     @required this.controller,
     @required this.placeHolder,
+    @required this.borderColor,
   });
 
   final TextEditingController controller;
   final String placeHolder;
+  final Color borderColor;
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +24,16 @@ class HabbitTextField extends StatelessWidget {
           child: TextField(
             controller: controller,
             style: kTextFieldTextStyle,
-            decoration: InputDecoration().copyWith(labelText: placeHolder,),
-            autocorrect: false,            
+            decoration: InputDecoration().copyWith(
+              labelText: placeHolder,
+              focusedBorder: textFieldFocusedBorder.copyWith(
+                borderSide: BorderSide(
+                  color: borderColor,
+                  width: 2.0,
+                ),
+              ),
+            ),
+            autocorrect: false,
           ),
         ),
       ),

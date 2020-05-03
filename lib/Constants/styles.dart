@@ -29,6 +29,18 @@ const List<Color> availableColors = [
   Colors.blueGrey,
 ];
 
+OutlineInputBorder get textFieldFocusedBorder {
+  return OutlineInputBorder(
+    borderRadius: const BorderRadius.all(
+      const Radius.circular(10.0),
+    ),
+    borderSide: new BorderSide(
+      color: kGreenColor,
+      width: 2.0,
+    ),
+  );
+}
+
 TextStyle get kScreenTitleLabel {
   return GoogleFonts.poppins(
     color: textColor,

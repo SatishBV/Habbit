@@ -16,19 +16,6 @@ class CurvedSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20.0,
-            vertical: 10.0,
-          ),
-          child: Container(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              title,
-              style: kAddHabitPageTitleLabel,
-            ),
-          ),
-        ),
         Expanded(
           child: ClipRRect(
             borderRadius: BorderRadius.only(
@@ -36,15 +23,15 @@ class CurvedSheet extends StatelessWidget {
               topRight: Radius.circular(30.0),
             ),
             child: Container(
-                height: 500.0,
-                decoration: BoxDecoration(
-                  color: backgroundColor,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30.0),
-                    topRight: Radius.circular(30.0),
-                  ),
+              decoration: BoxDecoration(
+                color: backgroundColor,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30.0),
+                  topRight: Radius.circular(30.0),
                 ),
-                child: child),
+              ),
+              child: child,
+            ),
           ),
         )
       ],
