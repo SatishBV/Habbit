@@ -12,21 +12,21 @@ class Habbit extends StatelessWidget {
     return MaterialApp(
       title: 'Habbit',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
-        primaryColor: kSecondaryBlackColor,
-        accentColor: kGreenColor,
-        scaffoldBackgroundColor: kPrimaryBlackColor,
+      theme: ThemeData.light().copyWith(
+        primaryColor: kDarkBlueColor,
+        accentColor: kPapayaColor,
+        scaffoldBackgroundColor: kWhiteColor,
         inputDecorationTheme: InputDecorationTheme(
           border: new OutlineInputBorder(
             borderRadius: const BorderRadius.all(
               const Radius.circular(10.0),
             ),
           ),
-          labelStyle: kTextFieldTextStyle.copyWith(color: textColor.withOpacity(0.50), fontSize: 15.0),
+          labelStyle: kTextFieldTextStyle.copyWith(fontSize: 15.0,),
           contentPadding: EdgeInsets.only(left: 8.0, bottom: 0.0),
         ),
       ),
-      home: HomePage(),
+      home: WelcomeScreen(),
       routes: {
         HomePage.id: (context) => HomePage(),
       },

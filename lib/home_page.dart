@@ -34,14 +34,9 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(200.0),
+        preferredSize: Size.fromHeight(180.0),
         child: AppBar(
           elevation: 8.0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(40.0),
-            ),
-          ),
           flexibleSpace: Column(
             children: <Widget>[
               SizedBox(
@@ -86,8 +81,8 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.transparent,
       builder: (BuildContext bc) {
         return DraggableScrollableSheet(
-          initialChildSize: 0.80,
-          maxChildSize: 0.8,
+          initialChildSize: 1.0,
+          maxChildSize: 1.0,
           minChildSize: 0.25,
           builder: (BuildContext context, ScrollController scrollController) {
             return Container(

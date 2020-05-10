@@ -23,7 +23,6 @@ class HabbitTextField extends StatelessWidget {
         horizontal: 20.0,
       ),
       child: Container(
-        color: kCardColor,
         child: Center(
           child: TextField(
             obscureText: obscureText != null ? obscureText : false,

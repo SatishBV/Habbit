@@ -45,7 +45,7 @@ class _CreateHabitState extends State<CreateHabbit> {
       },
       child: CurvedSheet(
         title: 'Add a new Habbit',
-        backgroundColor: kPrimaryBlackColor,
+        backgroundColor: kWhiteColor,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
@@ -60,13 +60,13 @@ class _CreateHabitState extends State<CreateHabbit> {
                 ),
               ),
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 30.0),
             HabbitTextField(
               controller: _nameTextEditingController,
               placeHolder: 'Name',
               borderColor: _activeColor,
             ),
-            SizedBox(height: 10.0),
+            SizedBox(height: 30.0),
             WeekDayPicker(
               days: habit.selectedDays,
               accentColor: _activeColor,
@@ -74,7 +74,7 @@ class _CreateHabitState extends State<CreateHabbit> {
                 updateSelectedDays(days);
               },
             ),
-            SizedBox(height: 10.0),
+            SizedBox(height: 30.0),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.0),
               child: Row(
@@ -101,7 +101,7 @@ class _CreateHabitState extends State<CreateHabbit> {
                 ],
               ),
             ),
-            SizedBox(height: 10.0),
+            SizedBox(height: 30.0),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.0),
               child: Row(

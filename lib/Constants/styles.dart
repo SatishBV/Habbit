@@ -3,9 +3,13 @@ import 'package:google_fonts/google_fonts.dart';
 
 const Color kPrimaryBlackColor = Color(0xFF121212);
 const Color kSecondaryBlackColor = Color(0xFF1A1A1D);
-const Color kCardColor = Color(0xFF1F2833);
-const Color kGreenColor = Colors.lightGreen;
-const Color textColor = Colors.white;
+const Color kGreenColor = kPapayaColor;
+
+const Color kWhiteColor = Colors.white;
+const Color kBlackColor = Color(0xFF121212);
+const Color kPapayaColor = Color(0xFFFCA311);
+const Color kDarkBlueColor = Color(0xFF14213D);
+const Color kGreyColor = Color(0xFFE5E5E5);
 
 const List<Color> availableColors = [
   Colors.red,
@@ -43,7 +47,7 @@ OutlineInputBorder get textFieldFocusedBorder {
 
 TextStyle get kScreenTitleLabel {
   return GoogleFonts.poppins(
-    color: textColor,
+    color: kWhiteColor,
     fontWeight: FontWeight.w600,
     fontSize: 20.0,
   );
@@ -51,16 +55,15 @@ TextStyle get kScreenTitleLabel {
 
 TextStyle get kAddHabitPageTitleLabel {
   return GoogleFonts.poppins(
-    color: kPrimaryBlackColor,
-    fontWeight: FontWeight.w700,
-    fontSize: 25.0,
-    letterSpacing: 1.1,
+    color: kBlackColor,
+    fontWeight: FontWeight.w600,
+    fontSize: 20.0,
   );
 }
 
 TextStyle get kMonthYearLabel {
   return GoogleFonts.poppins(
-    color: textColor.withOpacity(0.87),
+    color: kWhiteColor.withOpacity(0.87),
     fontSize: 30.0,
     fontWeight: FontWeight.w500,
   );
@@ -68,7 +71,7 @@ TextStyle get kMonthYearLabel {
 
 TextStyle get kPickerTitleStyle {
   return GoogleFonts.roboto(
-      color: textColor.withOpacity(0.87),
+      color: kBlackColor.withOpacity(0.87),
       fontSize: 20.0,
       fontWeight: FontWeight.w500,
       letterSpacing: 1.3);
@@ -76,7 +79,7 @@ TextStyle get kPickerTitleStyle {
 
 TextStyle get kCaptionStyle {
   return GoogleFonts.poppins(
-    color: textColor.withOpacity(0.87),
+    color: kDarkBlueColor,
     fontSize: 12.0,
     fontWeight: FontWeight.w400,
   );
@@ -84,7 +87,7 @@ TextStyle get kCaptionStyle {
 
 TextStyle get kTitleStyle {
   return GoogleFonts.poppins(
-    color: textColor.withOpacity(0.87),
+    color: kDarkBlueColor,
     fontSize: 25.0,
     fontWeight: FontWeight.w600,
   );
@@ -92,7 +95,7 @@ TextStyle get kTitleStyle {
 
 TextStyle get kHomePageCardTitle {
   return GoogleFonts.roboto(
-    color: textColor.withOpacity(0.87),
+    color: kBlackColor.withOpacity(0.87),
     fontSize: 20.0,
     fontWeight: FontWeight.w600,
   );
@@ -100,7 +103,7 @@ TextStyle get kHomePageCardTitle {
 
 TextStyle get kTextFieldPlaceHolderStyle {
   return GoogleFonts.roboto(
-    color: textColor.withOpacity(0.50),
+    color: kBlackColor.withOpacity(0.50),
     fontSize: 12.0,
     fontWeight: FontWeight.w600,
   );
@@ -108,7 +111,7 @@ TextStyle get kTextFieldPlaceHolderStyle {
 
 TextStyle get kTextFieldTextStyle {
   return GoogleFonts.roboto(
-    color: textColor.withOpacity(0.87),
+    color: kBlackColor.withOpacity(0.87),
     fontSize: 16.0,
     fontWeight: FontWeight.w600,
   );
