@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:habbit/Constants/styles.dart';
 import 'package:habbit/Views/text_field_view.dart';
+import 'package:habbit/home_page.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
@@ -26,15 +27,14 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.white,
       appBar: new AppBar(
         title: new Text("Get started"),
         bottom: TabBar(
-          unselectedLabelColor: Colors.white,
-          labelColor: Colors.amber,
+          unselectedLabelColor: kWhiteColor,
+          labelColor: kPapayaColor,
           tabs: authTabs,
           controller: _tabController,
-          indicatorColor: Colors.white,
+          indicatorColor: kPapayaColor,
         ),
         bottomOpacity: 1,
       ),
@@ -68,7 +68,7 @@ class AuthenticationForm extends StatelessWidget {
           keyboardType: TextInputType.emailAddress,
         ),
         SizedBox(
-          height: 10.0,
+          height: 15.0,
         ),
         HabbitTextField(
           borderColor: kGreenColor,
@@ -79,15 +79,23 @@ class AuthenticationForm extends StatelessWidget {
         SizedBox(
           height: 40.0,
         ),
-        RaisedButton(
-          color: kGreenColor,
-          child: isSignIn ? Text('Sign in') : Text('Sign up'),
-          onPressed: () {},
-        ),
         SizedBox(
-          height: 20.0,
+          height: 60.0,
+          width: 200.0,
+          child: RaisedButton(
+            elevation: 2.0,
+            color: kGreenColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(40),
+            ),
+            child: isSignIn
+                ? Text('Sign in', style: kHomePageCardTitle)
+                : Text('Sign up', style: kHomePageCardTitle),
+            onPressed: () {
+              Navigator.pushNamed(context, HomePage.id);
+            },
+          ),
         ),
-        Text('-OR-'),
         SizedBox(
           height: 20.0,
         ),
@@ -97,35 +105,40 @@ class AuthenticationForm extends StatelessWidget {
   }
 
   Widget _googleAuthentication() {
-    final String buttonText =
-        isSignIn ? 'Sign in with Google' : 'Sign up with Google';
+    final String buttonText = isSignIn ? 'Sign in with ' : 'Sign up with ';
 
-    return OutlineButton(
-      onPressed: () {},
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(40),
-        side: BorderSide(color: kGreenColor)
-      ),
-      highlightElevation: 0,
-      borderSide: BorderSide(color: Colors.grey),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(right: 10),
-              child: Text(
-                buttonText,
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.grey,
+    return SizedBox(
+      width: 200.0,
+      height: 60.0,
+      child: OutlineButton(
+        onPressed: () {},
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(40),
+          side: BorderSide(color: kPapayaColor),
+        ),
+        highlightElevation: 4,
+        borderSide: BorderSide(color: kBlackColor),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: Text(
+                  buttonText,
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
                 ),
               ),
-            ),
-            Image(image: AssetImage("assets/google_logo.png"), height: 35.0),
-          ],
+              Image(
+                image: AssetImage("assets/google_logo.png"),
+                height: 35.0,
+              ),
+            ],
+          ),
         ),
       ),
     );

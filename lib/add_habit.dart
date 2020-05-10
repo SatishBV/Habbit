@@ -39,99 +39,94 @@ class _CreateHabitState extends State<CreateHabbit> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).requestFocus(new FocusNode());
-      },
-      child: CurvedSheet(
-        title: 'Add a new Habbit',
-        backgroundColor: kWhiteColor,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              alignment: Alignment.centerLeft,
-              color: _activeColor,
-              height: 70.0,
-              child: Center(
-                child: Text(
-                  'Add a new Habbit',
-                  style: kAddHabitPageTitleLabel,
+    return CurvedSheet(
+      title: 'Add a new Habbit',
+      backgroundColor: kWhiteColor,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Container(
+            alignment: Alignment.centerLeft,
+            color: _activeColor,
+            height: 70.0,
+            child: Center(
+              child: Text(
+                'Add a new Habbit',
+                style: kAddHabitPageTitleLabel,
+              ),
+            ),
+          ),
+          SizedBox(height: 30.0),
+          HabbitTextField(
+            controller: _nameTextEditingController,
+            placeHolder: 'Name',
+            borderColor: _activeColor,
+          ),
+          SizedBox(height: 30.0),
+          WeekDayPicker(
+            days: habit.selectedDays,
+            accentColor: _activeColor,
+            onDayTap: (days) {
+              updateSelectedDays(days);
+            },
+          ),
+          SizedBox(height: 30.0),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Expanded(
+                  child: ColorPickerCard(
+                    activeColor: _activeColor,
+                    onColorChanged: (color) {
+                      changeColor(color);
+                    },
+                  ),
                 ),
-              ),
-            ),
-            SizedBox(height: 30.0),
-            HabbitTextField(
-              controller: _nameTextEditingController,
-              placeHolder: 'Name',
-              borderColor: _activeColor,
-            ),
-            SizedBox(height: 30.0),
-            WeekDayPicker(
-              days: habit.selectedDays,
-              accentColor: _activeColor,
-              onDayTap: (days) {
-                updateSelectedDays(days);
-              },
-            ),
-            SizedBox(height: 30.0),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Expanded(
-                    child: ColorPickerCard(
-                      activeColor: _activeColor,
-                      onColorChanged: (color) {
-                        changeColor(color);
-                      },
-                    ),
+                SizedBox(width: 20.0),
+                Expanded(
+                  child: IconPickerCard(
+                    activeIcon: _activeIcon,
+                    activeColor: _activeColor,
+                    onIconChanged: (icon) {
+                      changeIcon(icon);
+                    },
                   ),
-                  SizedBox(width: 20.0),
-                  Expanded(
-                    child: IconPickerCard(
-                      activeIcon: _activeIcon,
-                      activeColor: _activeColor,
-                      onIconChanged: (icon) {
-                        changeIcon(icon);
-                      },
-                    ),
-                  )
-                ],
-              ),
+                )
+              ],
             ),
-            SizedBox(height: 30.0),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: ButtonTheme(
-                      height: 55.0,
-                      minWidth: 200.0,
-                      child: RaisedButton(
-                        elevation: 6.0,
-                        color: _activeColor,
-                        child: Text(
-                          'Save',
-                          style: kHomePageCardTitle.copyWith(
-                            color: kPrimaryBlackColor,
-                          ),
+          ),
+          SizedBox(height: 30.0),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: ButtonTheme(
+                    height: 55.0,
+                    minWidth: 200.0,
+                    child: RaisedButton(
+                      elevation: 6.0,
+                      color: _activeColor,
+                      child: Text(
+                        'Save',
+                        style: kHomePageCardTitle.copyWith(
+                          color: kPrimaryBlackColor,
                         ),
-                        onPressed: () {
-                          if (validateInformation()) {
-                            Navigator.pop(context, widget.onSave(habit));
-                          } else {}
-                        },
                       ),
+                      onPressed: () {
+                        if (validateInformation()) {
+                          Navigator.pop(context, widget.onSave(habit));
+                        } else {}
+                      },
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
