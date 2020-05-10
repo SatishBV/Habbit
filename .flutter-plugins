@@ -1,3 +1,9 @@
 # This is a generated file; do not edit or check into version control.
+firebase_auth=/Users/s1b012r/Workspace/Training/Flutter workspace/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.16.0/
+firebase_auth_web=/Users/s1b012r/Workspace/Training/Flutter workspace/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_web-0.1.2/
+firebase_core=/Users/s1b012r/Workspace/Training/Flutter workspace/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.4.4+3/
+firebase_core_web=/Users/s1b012r/Workspace/Training/Flutter workspace/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-0.1.1+2/
+google_sign_in=/Users/s1b012r/Workspace/Training/Flutter workspace/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in-4.4.4/
+google_sign_in_web=/Users/s1b012r/Workspace/Training/Flutter workspace/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in_web-0.9.1/
 path_provider=/Users/s1b012r/Workspace/Training/Flutter workspace/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.6.5/
 path_provider_macos=/Users/s1b012r/Workspace/Training/Flutter workspace/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_macos-0.0.4/

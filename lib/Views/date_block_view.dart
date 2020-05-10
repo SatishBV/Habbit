@@ -25,24 +25,19 @@ class DateBlockView extends StatelessWidget {
         height: 80.0,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
-          border: Border.all(color: isActive ? kGreenColor : kCardColor),
-          color: kCardColor,
+          color: isActive ? kPapayaColor : kGreyColor,
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(getDayText(),
-                style: isActive
-                    ? kCaptionStyle.copyWith(
-                        color: kGreenColor,
-                      )
-                    : kCaptionStyle),
-            Text(getDateForDay(dayOfWeek),
-                style: isActive
-                    ? kTitleStyle.copyWith(
-                        color: kGreenColor,
-                      )
-                    : kTitleStyle),
+            Text(
+              getDayText(),
+              style: kCaptionStyle,
+            ),
+            Text(
+              getDateForDay(dayOfWeek),
+              style: kTitleStyle,
+            ),
           ],
         ),
       ),

@@ -1,34 +1,45 @@
 import 'package:flutter/material.dart';
 import 'home_page.dart';
+import 'welcome_screen.dart';
 import 'Constants/styles.dart';
 
 void main() => runApp(Habbit());
 
 class Habbit extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Habbit',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
-        primaryColor: kSecondaryBlackColor,
-        accentColor: kGreenColor,
-        scaffoldBackgroundColor: kPrimaryBlackColor,
-        inputDecorationTheme: InputDecorationTheme(
-          border: new OutlineInputBorder(
-            borderRadius: const BorderRadius.all(
-              const Radius.circular(10.0),
-            ),
-          ),
-          labelStyle: kTextFieldTextStyle.copyWith(color: textColor.withOpacity(0.50), fontSize: 15.0),
-          contentPadding: EdgeInsets.only(left: 8.0, bottom: 0.0),
-        ),
-      ),
-      home: HomePage(),
-      routes: {
-        HomePage.id: (context) => HomePage(),
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
       },
+      child: MaterialApp(
+        title: 'Habbit',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData.light().copyWith(
+          primaryColor: kDarkBlueColor,
+          accentColor: kPapayaColor,
+          scaffoldBackgroundColor: kWhiteColor,
+          inputDecorationTheme: InputDecorationTheme(
+            border: new OutlineInputBorder(
+              borderRadius: const BorderRadius.all(
+                const Radius.circular(10.0),
+              ),
+            ),
+            labelStyle: kTextFieldTextStyle.copyWith(
+              fontSize: 15.0,
+            ),
+            contentPadding: EdgeInsets.only(left: 8.0, bottom: 0.0),
+          ),
+        ),
+        home: WelcomeScreen(),
+        routes: {
+          HomePage.id: (context) => HomePage(),
+        },
+      ),
     );
   }
 }

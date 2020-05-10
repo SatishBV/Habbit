@@ -48,7 +48,7 @@ class _HomePageCardState extends State<HomePageCard> {
                     FlatButton(
                       child: Text(
                         "Cancel",
-                        style: TextStyle(color: textColor),
+                        style: TextStyle(color: kWhiteColor),
                       ),
                       onPressed: () {
                         Navigator.of(context).pop();
@@ -77,52 +77,44 @@ class _HomePageCardState extends State<HomePageCard> {
         },
         background: taskDoneBackground(),
         secondaryBackground: taskDeleteBackground(),
-        child: Container(
-          margin: EdgeInsets.symmetric(vertical: 2.0),
-          height: 80.0,
-          decoration: BoxDecoration(
-            color: kCardColor,
-            borderRadius: BorderRadius.circular(10.0),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _isSelected = !_isSelected;
-                    });
-                  },
-                  child: CircleAvatar(
-                    backgroundColor: widget.habit.habitColor,
-                    child: _isSelected ? iconChecked() : habitImage(),
-                    radius: 20.0,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 5.0),
+          child: Container(
+            height: 80.0,
+            child: Material(
+              color: widget.habit.habitColor,
+              elevation: 6.0,
+              borderRadius: BorderRadius.circular(10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Expanded(
+                    child: habitImage(),
                   ),
-                ),
-              ),
-              Expanded(
-                flex: 2,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      widget.habit.title,
-                      style: kHomePageCardTitle,
+                  Expanded(
+                    flex: 2,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          widget.habit.title,
+                          style: kHomePageCardTitle,
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-              Expanded(
-                flex: 2,
-                child: Container(
-                  child: Center(
-                    child: Text('5/$scheduledCheckIns'),
                   ),
-                ),
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      child: Center(
+                        child: Text('5/$scheduledCheckIns'),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
@@ -145,43 +137,47 @@ class _HomePageCardState extends State<HomePageCard> {
         image: AssetImage(
           widget.habit.icon.imagePath,
         ),
-        width: 25.0,
-        height: 25.0,
+        width: 35.0,
+        height: 35.0,
       ),
     );
   }
 
   Widget taskDoneBackground() {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 2.0),
-      height: 80.0,
-      padding: EdgeInsets.only(left: 28.0),
-      alignment: AlignmentDirectional.centerStart,
-      decoration: BoxDecoration(
-        color: Colors.green,
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(10.0),
-          bottomLeft: Radius.circular(10.0),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: Container(
+        height: 80.0,
+        padding: EdgeInsets.only(left: 28.0),
+        alignment: AlignmentDirectional.centerStart,
+        decoration: BoxDecoration(
+          color: Colors.green,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(10.0),
+            bottomLeft: Radius.circular(10.0),
+          ),
         ),
+        child: FaIcon(FontAwesomeIcons.solidCheckCircle),
       ),
-      child: FaIcon(FontAwesomeIcons.solidCheckCircle),
     );
   }
 
   Widget taskDeleteBackground() {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 2.0),
-      height: 80.0,
-      padding: EdgeInsets.only(right: 28.0),
-      alignment: AlignmentDirectional.centerEnd,
-      decoration: BoxDecoration(
-        color: Colors.red,
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(10.0),
-          bottomRight: Radius.circular(10.0),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: Container(
+        height: 80.0,
+        padding: EdgeInsets.only(right: 28.0),
+        alignment: AlignmentDirectional.centerEnd,
+        decoration: BoxDecoration(
+          color: Colors.red,
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(10.0),
+            bottomRight: Radius.circular(10.0),
+          ),
         ),
+        child: FaIcon(FontAwesomeIcons.minusCircle),
       ),
-      child: FaIcon(FontAwesomeIcons.minusCircle),
     );
   }
 }
