@@ -6,11 +6,15 @@ class HabbitTextField extends StatelessWidget {
     @required this.controller,
     @required this.placeHolder,
     @required this.borderColor,
+    this.obscureText,
+    this.keyboardType,
   });
 
   final TextEditingController controller;
   final String placeHolder;
   final Color borderColor;
+  final bool obscureText;
+  final TextInputType keyboardType;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +26,8 @@ class HabbitTextField extends StatelessWidget {
         color: kCardColor,
         child: Center(
           child: TextField(
+            obscureText: obscureText != null ? obscureText : false,
+            keyboardType: keyboardType != null ? keyboardType : TextInputType.text,
             controller: controller,
             style: kTextFieldTextStyle,
             decoration: InputDecoration().copyWith(
