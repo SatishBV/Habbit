@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:habbit/Constants/styles.dart';
 
 class CurvedSheet extends StatelessWidget {
   final Color backgroundColor;
