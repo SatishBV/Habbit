@@ -37,10 +37,26 @@ class _HomePageState extends State<HomePage> {
         preferredSize: Size.fromHeight(180.0),
         child: AppBar(
           elevation: 8.0,
+          leading: Container(),
+          actions: <Widget>[
+            Padding(
+              padding: EdgeInsets.fromLTRB(0, 25, 10, 10),
+              child: FaIcon(FontAwesomeIcons.search),
+            ),
+            GestureDetector(
+              onTap: () {
+                
+              },
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(10, 25, 25, 10),
+                child: FaIcon(FontAwesomeIcons.ellipsisH),
+              ),
+            ),
+          ],
           flexibleSpace: Column(
             children: <Widget>[
               SizedBox(
-                height: 80.0,
+                height: 70.0,
               ),
               WeekView(
                 onTap: onDateSelection,
