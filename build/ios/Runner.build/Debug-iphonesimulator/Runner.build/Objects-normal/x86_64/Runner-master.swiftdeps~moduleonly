@@ -1,5 +1,0 @@
-version: "Apple Swift version 5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)"
-options: "b3c7f992291ea3f3deca88d979f53951"
-build_time: [1589105182, 860443000]
-inputs:
-  "/Users/s1b012r/Workspace/Training/Habbit/ios/Runner/AppDelegate.swift": [1586773277, 234088004]
