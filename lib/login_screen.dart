@@ -143,6 +143,9 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
             height: 20.0,
           ),
           showSecondaryButton(),
+          SizedBox(
+            height: 20.0,
+          ),
         ],
       ),
     );
@@ -222,14 +225,14 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
         elevation: 6.0,
         color: kDarkBlueColor,
         shape: new RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(30.0),
-          ),
+          borderRadius: new BorderRadius.circular(30.0),
+        ),
         child: new Text(
           _isLoginForm ? 'Create an account' : 'Have an account? Sign in',
           style: new TextStyle(
             fontSize: 18.0,
-            fontWeight: FontWeight.w500,
-            color: kWhiteColor
+            fontWeight: FontWeight.w400,
+            color: kWhiteColor,
           ),
         ),
         onPressed: toggleFormMode,
