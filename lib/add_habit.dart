@@ -21,7 +21,7 @@ class CreateHabbit extends StatefulWidget {
 class _CreateHabitState extends State<CreateHabbit> {
   Habit habit;
   TextEditingController _nameTextEditingController = TextEditingController();
-  Color _activeColor = kGreenColor;
+  Color _activeColor = kPapayaColor;
   ActivityIcon _activeIcon = ActivityIcon.none;
 
   @override
@@ -111,7 +111,7 @@ class _CreateHabitState extends State<CreateHabbit> {
                       child: Text(
                         'Save',
                         style: kHomePageCardTitle.copyWith(
-                          color: kPrimaryBlackColor,
+                          color: kBlackColor,
                         ),
                       ),
                       onPressed: () {

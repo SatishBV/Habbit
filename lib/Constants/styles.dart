@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-const Color kPrimaryBlackColor = Color(0xFF121212);
 const Color kSecondaryBlackColor = Color(0xFF1A1A1D);
-const Color kGreenColor = kPapayaColor;
 
 const Color kWhiteColor = Colors.white;
 const Color kBlackColor = Color(0xFF121212);
@@ -39,7 +37,7 @@ OutlineInputBorder get textFieldFocusedBorder {
       const Radius.circular(10.0),
     ),
     borderSide: new BorderSide(
-      color: kGreenColor,
+      color: kPapayaColor,
       width: 2.0,
     ),
   );
