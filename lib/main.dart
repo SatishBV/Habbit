@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'home_page.dart';
-import 'welcome_screen.dart';
+import 'root_page.dart';
+import 'authentication.dart';
 import 'Constants/styles.dart';
 
 void main() => runApp(Habbit());
@@ -35,7 +36,7 @@ class Habbit extends StatelessWidget {
             contentPadding: EdgeInsets.only(left: 8.0, bottom: 0.0),
           ),
         ),
-        home: WelcomeScreen(),
+        home: new RootPage(auth: new Auth()),
         routes: {
           HomePage.id: (context) => HomePage(),
         },

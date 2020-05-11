@@ -7,9 +7,17 @@ import 'Constants/styles.dart';
 import 'Views/week_view.dart';
 import 'Views/home_page_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'authentication.dart';
 
 class HomePage extends StatefulWidget {
   static String id = 'HomeScreen';
+
+  HomePage({Key key, this.auth, this.userId, this.logoutCallback})
+      : super(key: key);
+
+  final BaseAuth auth;
+  final VoidCallback logoutCallback;
+  final String userId;
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -45,7 +53,7 @@ class _HomePageState extends State<HomePage> {
             ),
             GestureDetector(
               onTap: () {
-                
+                signOut();
               },
               child: Padding(
                 padding: EdgeInsets.fromLTRB(10, 25, 25, 10),
@@ -110,6 +118,15 @@ class _HomePageState extends State<HomePage> {
         );
       },
     );
+  }
+
+  signOut() async {
+    try {
+      await widget.auth.signOut();
+      widget.logoutCallback();
+    } catch (e) {
+      print(e);
+    }
   }
 
   void onDateSelection(DateTime dateTime) {
