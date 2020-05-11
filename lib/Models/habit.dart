@@ -31,7 +31,7 @@ extension WeekDayExtension on WeekDay {
 class Habit {
   String title = '';
   String description = '';
-  Color habitColor = kGreenColor;
+  Color habitColor = kPapayaColor;
   ActivityIcon icon;
 
   Map<WeekDay, bool> selectedDays = new Map();
