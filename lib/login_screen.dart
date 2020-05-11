@@ -146,11 +146,6 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
           SizedBox(
             height: 20.0,
           ),
-          Text('-OR-'),
-          SizedBox(
-            height: 20.0,
-          ),
-          showGoogleSignInButton(),
         ],
       ),
     );
@@ -265,47 +260,6 @@ class _LoginSignupPageState extends State<LoginSignupPage> {
             ),
           ),
           onPressed: validateAndSubmit,
-        ),
-      ),
-    );
-  }
-
-  Widget showGoogleSignInButton() {
-    final String buttonText =
-        _isLoginForm ? 'Login with ' : 'Create account with ';
-
-    return SizedBox(
-      width: 300.0,
-      height: 50.0,
-      child: OutlineButton(
-        onPressed: () {},
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30),
-          side: BorderSide(color: kPapayaColor),
-        ),
-        highlightElevation: 4,
-        borderSide: BorderSide(color: kBlackColor),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: Text(
-                  buttonText,
-                  style: TextStyle(
-                    fontSize: 20,
-                  ),
-                ),
-              ),
-              Image(
-                image: AssetImage("assets/google_logo.png"),
-                height: 35.0,
-              ),
-            ],
-          ),
         ),
       ),
     );
