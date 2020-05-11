@@ -88,9 +88,9 @@ class _HomePageState extends State<HomePage> {
         disabledElevation: 4.0,
         child: FaIcon(
           FontAwesomeIcons.plus,
-          color: kBlackColor,
+          color: kPapayaColor,
         ),
-        backgroundColor: kPapayaColor,
+        backgroundColor: kDarkBlueColor,
         elevation: 6,
         onPressed: () {
           _settingModalBottomSheet(context);
