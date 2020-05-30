@@ -1,34 +1,15 @@
 import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:habbit/Constants/activity_icons.dart';
 import 'package:habbit/Constants/styles.dart';
+import 'package:habbit/Utils/activity_icon_util.dart';
 import 'package:habbit/Utils/date_util.dart';
-
-enum WeekDay { monday, tuesday, wednesday, thursday, friday, saturday, sunday }
-
-extension WeekDayExtension on WeekDay {
-  String get abbrv {
-    switch (this) {
-      case WeekDay.monday:
-        return 'Mon';
-      case WeekDay.tuesday:
-        return 'Tue';
-      case WeekDay.wednesday:
-        return 'Wed';
-      case WeekDay.thursday:
-        return 'Thu';
-      case WeekDay.friday:
-        return 'Fri';
-      case WeekDay.saturday:
-        return 'Sat';
-      case WeekDay.sunday:
-        return 'Sun';
-    }
-
-    return '';
-  }
-}
+import 'package:intl/intl.dart';
+import 'weekday.dart';
 
 class Habit {
+  String id = '';
   String title = '';
   String description = '';
   Color habitColor = kPapayaColor;
@@ -43,9 +24,82 @@ class Habit {
   List<DateTime> checkIns = [];
 
   Habit() {
-    for(WeekDay day in WeekDay.values) {
+    for (WeekDay day in WeekDay.values) {
       selectedDays[day] = false;
     }
+  }
+
+  Habit.fromDocument(DocumentSnapshot document) {
+    for (WeekDay day in WeekDay.values) {
+      selectedDays[day] = false;
+    }
+
+    this.title = document.data["title"];
+    this.description = document.data["description"];
+    this.habitColor = _getColorFrom(document.data["color"]);
+    this.icon = activityFrom(document.data["icon"]);
+    _setSelectedDaysFrom(document);
+
+    this.checkIns = [];
+    this.checkIns = document.data['checkIns'].map<DateTime>((item) {
+      Timestamp t = item;
+      return t.toDate();
+    }).toList();
+  }
+
+  Color _getColorFrom(String color) {
+    switch (color) {
+      case 'blue':
+        return Colors.blue;
+      case 'red':
+        return Colors.red;
+      case 'green':
+        return Colors.green;
+      case 'lightGreen':
+        return Colors.lightGreen;
+      case 'pink':
+        return Colors.pink;
+      case 'purple':
+        return Colors.purple;
+      case 'deepPurple':
+        return Colors.deepPurple;
+      case 'indigo':
+        return Colors.indigo;
+      case 'lightBlue':
+        return Colors.lightBlue;
+      case 'cyan':
+        return Colors.cyan;
+      case 'teal':
+        return Colors.teal;
+      case 'lime':
+        return Colors.lime;
+      case 'yellow':
+        return Colors.yellow;
+      case 'amber':
+        return Colors.amber;
+      case 'orange':
+        return Colors.orange;
+      case 'papaya':
+        return kPapayaColor;
+      case 'brown':
+        return Colors.brown;
+      case 'grey':
+        return Colors.grey;
+      case 'blueGrey':
+        return Colors.blueGrey;
+      default:
+        return kPapayaColor;
+    }
+  }
+
+  void _setSelectedDaysFrom(DocumentSnapshot document) {
+    this.selectedDays[WeekDay.monday] = document.data["selectedDays"]["monday"];
+    this.selectedDays[WeekDay.tuesday] = document.data["selectedDays"]["tuesday"];
+    this.selectedDays[WeekDay.wednesday] = document.data["selectedDays"]["wednesday"];
+    this.selectedDays[WeekDay.thursday] = document.data["selectedDays"]["thursday"];
+    this.selectedDays[WeekDay.friday] = document.data["selectedDays"]["friday"];
+    this.selectedDays[WeekDay.saturday] = document.data["selectedDays"]["saturday"];
+    this.selectedDays[WeekDay.sunday] = document.data["selectedDays"]["sunday"];
   }
 
   int scheduledCheckIns() {
@@ -56,9 +110,18 @@ class Habit {
     int weeklyCheckins = 0;
 
     DateTime weekStartDate = DateUtils.weekStart(DateTime.now());
-    for(int i = 0; i < 7; i++) {
+
+    List<String> formattedCheckIns = [];
+    for (DateTime checkIn in checkIns) {
+      String formattedCheckIn = DateFormat('MM/dd/y').format(checkIn);
+      formattedCheckIns.add(formattedCheckIn);
+    }
+
+    for (int i = 0; i < 7; i++) {
       DateTime dateTime = weekStartDate.add(Duration(days: i));
-      if(checkIns.contains(dateTime)) {
+      String formattedDate = DateFormat('MM/dd/y').format(dateTime);
+
+      if (formattedCheckIns.contains(formattedDate)) {
         weeklyCheckins += 1;
       }
     }
@@ -66,7 +129,7 @@ class Habit {
   }
 
   double weeklyProgress() {
-    return weeklyCheckIns()/scheduledCheckIns();
+    return weeklyCheckIns() / scheduledCheckIns();
   }
 
   void addCheckIn(DateTime dateTime) {

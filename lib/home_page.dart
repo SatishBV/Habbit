@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:habbit/Constants/activity_icons.dart';
@@ -8,6 +9,8 @@ import 'Views/week_view.dart';
 import 'Views/home_page_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'authentication.dart';
+import 'API/firestore.dart';
+import 'Utils/activity_icon_util.dart';
 
 class HomePage extends StatefulWidget {
   static String id = 'HomeScreen';
@@ -18,6 +21,7 @@ class HomePage extends StatefulWidget {
   final BaseAuth auth;
   final VoidCallback logoutCallback;
   final String userId;
+  final API api = API();
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -73,17 +77,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: ListView.builder(
-        itemCount: dummy.length,
-        itemBuilder: (context, index) {
-          return HomePageCard(
-            habit: dummy[index],
-            onDeleteHabit: (habit) {
-              deleteHabitCallBack(habit);
-            },
-          );
-        },
-      ),
+      body: getListOfHabits(),
       floatingActionButton: FloatingActionButton(
         disabledElevation: 4.0,
         child: FaIcon(
@@ -96,6 +90,55 @@ class _HomePageState extends State<HomePage> {
           _settingModalBottomSheet(context);
         },
       ),
+    );
+  }
+
+  Future getHabitsStream() async {
+    CollectionReference ref = await widget.api.getHabitsCollectionReference();
+    return ref.snapshots();
+  }
+
+  FutureBuilder getListOfHabits() {
+    return FutureBuilder(
+      future: getHabitsStream(),
+      builder: (_, snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.waiting:
+            return Center(
+              child: Text('Loading....'),
+            );
+          default:
+            return StreamBuilder<QuerySnapshot>(
+              stream: snapshot.data,
+              builder: (_, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                if (streamSnapshot.hasData) {
+                  return ListView.builder(
+                    itemCount: streamSnapshot.data.documents.length,
+                    itemBuilder: (_, index) {
+                      var document = streamSnapshot.data.documents[index];
+                      return HomePageCard(
+                        habit: Habit.fromDocument(document),
+                        onDeleteHabit: (habit) {
+                          deleteHabitCallBack(habit);
+                        },
+                      );
+                    },
+                  );
+                } else if (streamSnapshot.hasError) {
+                  return Center(
+                    child: Text('${snapshot.error}'),
+                  );
+                } else {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      backgroundColor: kPapayaColor,
+                    ),
+                  );
+                }
+              },
+            );
+        }
+      },
     );
   }
 

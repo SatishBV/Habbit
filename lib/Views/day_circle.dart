@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:habbit/Constants/styles.dart';
-import 'package:habbit/Models/habit.dart';
+import 'package:habbit/Models/weekday.dart';
 
 class DayCircle extends StatelessWidget {
   DayCircle(

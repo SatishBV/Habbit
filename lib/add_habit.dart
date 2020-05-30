@@ -7,6 +7,7 @@ import 'Models/habit.dart';
 import 'Views/text_field_view.dart';
 import 'Views/day_picker.dart';
 import 'Views/color_picker_card.dart';
+import 'Models/weekday.dart';
 
 class CreateHabbit extends StatefulWidget {
   final Function onSave;

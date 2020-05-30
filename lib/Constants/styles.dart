@@ -25,7 +25,7 @@ const List<Color> availableColors = [
   Colors.yellow,
   Colors.amber,
   Colors.orange,
-  Colors.deepOrange,
+  kPapayaColor,
   Colors.brown,
   Colors.grey,
   Colors.blueGrey,
