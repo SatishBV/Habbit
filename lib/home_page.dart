@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:habbit/Constants/activity_icons.dart';
@@ -8,6 +9,8 @@ import 'Views/week_view.dart';
 import 'Views/home_page_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'authentication.dart';
+import 'API/firestore.dart';
+import 'Utils/activity_icon_util.dart';
 
 class HomePage extends StatefulWidget {
   static String id = 'HomeScreen';
@@ -18,6 +21,7 @@ class HomePage extends StatefulWidget {
   final BaseAuth auth;
   final VoidCallback logoutCallback;
   final String userId;
+  final API api = API();
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -73,15 +77,35 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: ListView.builder(
-        itemCount: dummy.length,
-        itemBuilder: (context, index) {
-          return HomePageCard(
-            habit: dummy[index],
-            onDeleteHabit: (habit) {
-              deleteHabitCallBack(habit);
-            },
-          );
+      body: FutureBuilder(
+        future: getHabits(),
+        builder: (_, snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.waiting:
+              return Center(
+                child: Text('Loading....'),
+              );
+            default:
+              return ListView.builder(
+                itemCount: snapshot.data.length,
+                itemBuilder: (_, index) {
+                  var document = snapshot.data[index];
+                  Habit currentHabit = Habit();
+                  currentHabit.title = document.data["title"];
+                  currentHabit.description = document.data["description"];
+                  currentHabit.icon = activityFrom(document.data["icon"]);
+                  currentHabit.habitColor =
+                      currentHabit.getColorFrom(document.data["color"]);
+
+                  return HomePageCard(
+                    habit: currentHabit,
+                    onDeleteHabit: (habit) {
+                      deleteHabitCallBack(habit);
+                    },
+                  );
+                },
+              );
+          }
         },
       ),
       floatingActionButton: FloatingActionButton(
@@ -97,6 +121,12 @@ class _HomePageState extends State<HomePage> {
         },
       ),
     );
+  }
+
+  Future getHabits() async {
+    CollectionReference ref = await widget.api.getHabitsCollectionReference();
+    QuerySnapshot qn = await ref.getDocuments();
+    return qn.documents;
   }
 
   void _settingModalBottomSheet(context) {
