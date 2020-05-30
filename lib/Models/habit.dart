@@ -38,20 +38,12 @@ class Habit {
     this.habitColor = _getColorFrom(document.data["color"]);
     this.icon = activityFrom(document.data["icon"]);
     _setSelectedDaysFrom(document);
-    // print(this.selectedDays);
 
     this.checkIns = [];
     this.checkIns = document.data['checkIns'].map<DateTime>((item) {
       Timestamp t = item;
       return t.toDate();
     }).toList();
-
-    print(this.checkIns);
-
-    // Timestamp t = document['timeFieldName'];
-    // DateTime d = t.toDate();
-    // print(d.toString());
-    
   }
 
   Color _getColorFrom(String color) {
