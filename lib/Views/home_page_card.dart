@@ -22,6 +22,7 @@ class _HomePageCardState extends State<HomePageCard> {
   @override
   Widget build(BuildContext context) {
     int scheduledCheckIns = widget.habit.scheduledCheckIns();
+    int currentWeekCheckIns = widget.habit.weeklyCheckIns();
 
     return ListTile(
       title: Dismissible(
@@ -108,7 +109,7 @@ class _HomePageCardState extends State<HomePageCard> {
                     flex: 2,
                     child: Container(
                       child: Center(
-                        child: Text('5/$scheduledCheckIns'),
+                        child: Text('$currentWeekCheckIns/$scheduledCheckIns'),
                       ),
                     ),
                   ),

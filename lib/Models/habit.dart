@@ -5,6 +5,7 @@ import 'package:habbit/Constants/activity_icons.dart';
 import 'package:habbit/Constants/styles.dart';
 import 'package:habbit/Utils/activity_icon_util.dart';
 import 'package:habbit/Utils/date_util.dart';
+import 'package:intl/intl.dart';
 import 'weekday.dart';
 
 class Habit {
@@ -109,9 +110,18 @@ class Habit {
     int weeklyCheckins = 0;
 
     DateTime weekStartDate = DateUtils.weekStart(DateTime.now());
+
+    List<String> formattedCheckIns = [];
+    for (DateTime checkIn in checkIns) {
+      String formattedCheckIn = DateFormat('MM/dd/y').format(checkIn);
+      formattedCheckIns.add(formattedCheckIn);
+    }
+
     for (int i = 0; i < 7; i++) {
       DateTime dateTime = weekStartDate.add(Duration(days: i));
-      if (checkIns.contains(dateTime)) {
+      String formattedDate = DateFormat('MM/dd/y').format(dateTime);
+
+      if (formattedCheckIns.contains(formattedDate)) {
         weeklyCheckins += 1;
       }
     }
