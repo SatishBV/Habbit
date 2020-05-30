@@ -1,7 +1,9 @@
 import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:habbit/Constants/activity_icons.dart';
 import 'package:habbit/Constants/styles.dart';
+import 'package:habbit/Utils/activity_icon_util.dart';
 import 'package:habbit/Utils/date_util.dart';
 import 'weekday.dart';
 
@@ -26,7 +28,33 @@ class Habit {
     }
   }
 
-  Color getColorFrom(String color) {
+  Habit.fromDocument(DocumentSnapshot document) {
+    for (WeekDay day in WeekDay.values) {
+      selectedDays[day] = false;
+    }
+
+    this.title = document.data["title"];
+    this.description = document.data["description"];
+    this.habitColor = _getColorFrom(document.data["color"]);
+    this.icon = activityFrom(document.data["icon"]);
+    _setSelectedDaysFrom(document);
+    // print(this.selectedDays);
+
+    this.checkIns = [];
+    this.checkIns = document.data['checkIns'].map<DateTime>((item) {
+      Timestamp t = item;
+      return t.toDate();
+    }).toList();
+
+    print(this.checkIns);
+
+    // Timestamp t = document['timeFieldName'];
+    // DateTime d = t.toDate();
+    // print(d.toString());
+    
+  }
+
+  Color _getColorFrom(String color) {
     switch (color) {
       case 'blue':
         return Colors.blue;
@@ -69,6 +97,16 @@ class Habit {
       default:
         return kPapayaColor;
     }
+  }
+
+  void _setSelectedDaysFrom(DocumentSnapshot document) {
+    this.selectedDays[WeekDay.monday] = document.data["selectedDays"]["monday"];
+    this.selectedDays[WeekDay.tuesday] = document.data["selectedDays"]["tuesday"];
+    this.selectedDays[WeekDay.wednesday] = document.data["selectedDays"]["wednesday"];
+    this.selectedDays[WeekDay.thursday] = document.data["selectedDays"]["thursday"];
+    this.selectedDays[WeekDay.friday] = document.data["selectedDays"]["friday"];
+    this.selectedDays[WeekDay.saturday] = document.data["selectedDays"]["saturday"];
+    this.selectedDays[WeekDay.sunday] = document.data["selectedDays"]["sunday"];
   }
 
   int scheduledCheckIns() {

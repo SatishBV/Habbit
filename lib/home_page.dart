@@ -95,57 +95,51 @@ class _HomePageState extends State<HomePage> {
 
   Future getHabitsStream() async {
     CollectionReference ref = await widget.api.getHabitsCollectionReference();
-    // QuerySnapshot qn = await ref.getDocuments();
     return ref.snapshots();
-  }
-
-  Future getHabits() async {
-    CollectionReference ref = await widget.api.getHabitsCollectionReference();
-    QuerySnapshot qn = await ref.getDocuments();
-    return qn.documents;
   }
 
   FutureBuilder getListOfHabits() {
     return FutureBuilder(
-        future: getHabitsStream(),
-        builder: (_, snapshot) {
-          switch (snapshot.connectionState) {
-            case ConnectionState.waiting:
-              return Center(
-                child: Text('Loading....'),
-              );
-            default:
-              return StreamBuilder<QuerySnapshot>(
-                stream: snapshot.data,
-                builder: (_,AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-                  if (!streamSnapshot.hasData) {
-                    return Text("Loading..");
-                  }
+      future: getHabitsStream(),
+      builder: (_, snapshot) {
+        switch (snapshot.connectionState) {
+          case ConnectionState.waiting:
+            return Center(
+              child: Text('Loading....'),
+            );
+          default:
+            return StreamBuilder<QuerySnapshot>(
+              stream: snapshot.data,
+              builder: (_, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                if (streamSnapshot.hasData) {
                   return ListView.builder(
                     itemCount: streamSnapshot.data.documents.length,
                     itemBuilder: (_, index) {
                       var document = streamSnapshot.data.documents[index];
-                      
-                      Habit currentHabit = Habit();
-                      currentHabit.title = document.data["title"];
-                      currentHabit.description = document.data["description"];
-                      currentHabit.icon = activityFrom(document.data["icon"]);
-                      currentHabit.habitColor =
-                          currentHabit.getColorFrom(document.data["color"]);
-
                       return HomePageCard(
-                        habit: currentHabit,
+                        habit: Habit.fromDocument(document),
                         onDeleteHabit: (habit) {
                           deleteHabitCallBack(habit);
                         },
                       );
                     },
                   );
-                },
-              );
-          }
-        },
-      );
+                } else if (streamSnapshot.hasError) {
+                  return Center(
+                    child: Text('${snapshot.error}'),
+                  );
+                } else {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      backgroundColor: kPapayaColor,
+                    ),
+                  );
+                }
+              },
+            );
+        }
+      },
+    );
   }
 
   void _settingModalBottomSheet(context) {
