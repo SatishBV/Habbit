@@ -1,8 +1,11 @@
 import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:habbit/Constants/activity_icons.dart';
 import 'package:habbit/Constants/styles.dart';
+import 'package:habbit/Utils/activity_icon_util.dart';
 import 'package:habbit/Utils/date_util.dart';
+import 'package:intl/intl.dart';
 import 'weekday.dart';
 
 class Habit {
@@ -26,7 +29,25 @@ class Habit {
     }
   }
 
-  Color getColorFrom(String color) {
+  Habit.fromDocument(DocumentSnapshot document) {
+    for (WeekDay day in WeekDay.values) {
+      selectedDays[day] = false;
+    }
+
+    this.title = document.data["title"];
+    this.description = document.data["description"];
+    this.habitColor = _getColorFrom(document.data["color"]);
+    this.icon = activityFrom(document.data["icon"]);
+    _setSelectedDaysFrom(document);
+
+    this.checkIns = [];
+    this.checkIns = document.data['checkIns'].map<DateTime>((item) {
+      Timestamp t = item;
+      return t.toDate();
+    }).toList();
+  }
+
+  Color _getColorFrom(String color) {
     switch (color) {
       case 'blue':
         return Colors.blue;
@@ -71,6 +92,16 @@ class Habit {
     }
   }
 
+  void _setSelectedDaysFrom(DocumentSnapshot document) {
+    this.selectedDays[WeekDay.monday] = document.data["selectedDays"]["monday"];
+    this.selectedDays[WeekDay.tuesday] = document.data["selectedDays"]["tuesday"];
+    this.selectedDays[WeekDay.wednesday] = document.data["selectedDays"]["wednesday"];
+    this.selectedDays[WeekDay.thursday] = document.data["selectedDays"]["thursday"];
+    this.selectedDays[WeekDay.friday] = document.data["selectedDays"]["friday"];
+    this.selectedDays[WeekDay.saturday] = document.data["selectedDays"]["saturday"];
+    this.selectedDays[WeekDay.sunday] = document.data["selectedDays"]["sunday"];
+  }
+
   int scheduledCheckIns() {
     return selectedDays.values.where((day) => day == true).length;
   }
@@ -79,9 +110,18 @@ class Habit {
     int weeklyCheckins = 0;
 
     DateTime weekStartDate = DateUtils.weekStart(DateTime.now());
+
+    List<String> formattedCheckIns = [];
+    for (DateTime checkIn in checkIns) {
+      String formattedCheckIn = DateFormat('MM/dd/y').format(checkIn);
+      formattedCheckIns.add(formattedCheckIn);
+    }
+
     for (int i = 0; i < 7; i++) {
       DateTime dateTime = weekStartDate.add(Duration(days: i));
-      if (checkIns.contains(dateTime)) {
+      String formattedDate = DateFormat('MM/dd/y').format(dateTime);
+
+      if (formattedCheckIns.contains(formattedDate)) {
         weeklyCheckins += 1;
       }
     }
