@@ -32,7 +32,7 @@ class _IconPickerState extends State<IconPicker> {
       content: SingleChildScrollView(
         child: Container(
           width: 350.0,
-          height: 350.0,
+          height: 360.0,
           child: GridView.count(
             crossAxisCount: 4,
             crossAxisSpacing: 10.0,
@@ -52,7 +52,7 @@ class _IconPickerState extends State<IconPicker> {
                       borderRadius: BorderRadius.circular(50.0),
                       border: Border.all(
                         color: ActivityIcon.values[index] == currentIcon
-                            ? Colors.white
+                            ? Colors.black
                             : widget.accentColor,
                         width: 2.0,
                       ),
@@ -72,6 +72,14 @@ class _IconPickerState extends State<IconPicker> {
           ),
         ),
       ),
+      actions: <Widget>[
+        new FlatButton(
+          child: new Text("Close"),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ],
     );
   }
 }

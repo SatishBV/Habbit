@@ -176,12 +176,12 @@ class _HomePageState extends State<HomePage> {
 
   Future addHabitCallBack(Habit habit) async {
     CollectionReference ref = await widget.api.getHabitsCollectionReference();
-    for (Habit snap in tempSnapshot) {
-      if (habit.title == snap.title) {
+    tempSnapshot.forEach((element) {
+      if (element.title == habit.title) {
         showDialogWithClose(context, "Habit ${habit.title} already exists");
         return;
       }
-    }
+    });
     await ref.document(habit.title).setData(habit.toDocument());
   }
 
