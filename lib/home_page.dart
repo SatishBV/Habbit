@@ -53,13 +53,13 @@ class _HomePageState extends State<HomePage> {
   }
 
   Future addCheckIn(Habit habit) async {
-    habit.addCheckIn(DateTime.now());
+    habit.addCheckIn(_selectedDate);
     CollectionReference ref = await widget.api.getHabitsCollectionReference();
     await ref.document(habit.title).setData(habit.toDocument());
   }
 
   Future removeCheckIn(Habit habit) async {
-    habit.removeCheckIn(DateTime.now());
+    habit.removeCheckIn(_selectedDate);
     CollectionReference ref = await widget.api.getHabitsCollectionReference();
     await ref.document(habit.title).setData(habit.toDocument());
   }
@@ -148,7 +148,7 @@ class _HomePageState extends State<HomePage> {
                       tempSnapshot.add(Habit.fromDocument(document));
                       return HomePageCard(
                         habit: Habit.fromDocument(document),
-                        currentDate: DateTime.now(),
+                        currentDate: _selectedDate,
                         onDeleteHabit: (habit) {
                           deleteHabitCallBack(habit);
                         },
@@ -209,6 +209,8 @@ class _HomePageState extends State<HomePage> {
   void onDateSelection(DateTime dateTime) {
     print(dateTime.year.toString());
     print(dateTime.day.toString());
-    _selectedDate = DateUtils.dateOnly(dateTime);
+    setState(() {
+      _selectedDate = DateUtils.dateOnly(dateTime);
+    });
   }
 }

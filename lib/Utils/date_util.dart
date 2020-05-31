@@ -42,6 +42,6 @@ class DateUtils {
   }
 
   static DateTime dateOnly(DateTime dateTime) {
-    return new DateTime(dateTime.month, dateTime.day, dateTime.year);
+    return new DateTime(dateTime.year, dateTime.month, dateTime.day);
   }
 }
