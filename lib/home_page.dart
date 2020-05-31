@@ -10,7 +10,6 @@ import 'Views/home_page_card.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'authentication.dart';
 import 'API/firestore.dart';
-import 'Utils/activity_icon_util.dart';
 
 class HomePage extends StatefulWidget {
   static String id = 'HomeScreen';
@@ -116,6 +115,9 @@ class _HomePageState extends State<HomePage> {
                     itemCount: streamSnapshot.data.documents.length,
                     itemBuilder: (_, index) {
                       var document = streamSnapshot.data.documents[index];
+                      if (!streamSnapshot.hasData) {
+                        return Text('No data found');
+                      }
                       return HomePageCard(
                         habit: Habit.fromDocument(document),
                         onDeleteHabit: (habit) {
@@ -177,9 +179,11 @@ class _HomePageState extends State<HomePage> {
     print(dateTime.day.toString());
   }
 
-  void addHabitCallBack(Habit habit) {
+  Future addHabitCallBack(Habit habit) async {
+    CollectionReference ref = await widget.api.getHabitsCollectionReference();
+
     setState(() {
-      dummy.add(habit);
+      ref.add(habit.toDocument());
     });
   }
 

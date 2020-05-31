@@ -42,3 +42,65 @@ ActivityIcon activityFrom(String string) {
       return ActivityIcon.none;
   }
 }
+
+String stringFrom(ActivityIcon icon) {
+  switch (icon) {
+    case ActivityIcon.breakfast:
+      return 'breakfast';
+      break;
+    case ActivityIcon.calendar:
+      return 'calendar';
+      break;
+    case ActivityIcon.code:
+      return 'code';
+      break;
+    case ActivityIcon.exercise:
+      return 'exercise';
+      break;
+    case ActivityIcon.finance:
+      return 'finance';
+      break;
+    case ActivityIcon.fruit:
+      return 'fruit';
+      break;
+    case ActivityIcon.journal:
+      return 'journal';
+      break;
+    case ActivityIcon.language:
+      return 'language';
+      break;
+    case ActivityIcon.meditation:
+      return 'meditation';
+      break;
+    case ActivityIcon.photography:
+      return 'photography';
+      break;
+    case ActivityIcon.pushups:
+      return 'pushups';
+      break;
+    case ActivityIcon.read:
+      return 'read';
+      break;
+    case ActivityIcon.run:
+      return 'run';
+      break;
+    case ActivityIcon.shower:
+      return 'shower';
+      break;
+    case ActivityIcon.sleep:
+      return 'sleep';
+      break;
+    case ActivityIcon.steps:
+      return 'steps';
+      break;
+    case ActivityIcon.study:
+      return 'study';
+      break;
+    case ActivityIcon.yoga:
+      return 'yoga';
+      break;
+    case ActivityIcon.none:
+      return 'none';
+      break;
+  }
+}
