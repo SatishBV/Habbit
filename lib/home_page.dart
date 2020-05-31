@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:habbit/Constants/activity_icons.dart';
 import 'package:habbit/Models/habit.dart';
+import 'package:habbit/Utils/alerts_util.dart';
 import 'package:habbit/add_habit.dart';
 import 'Constants/styles.dart';
 import 'Views/week_view.dart';
@@ -27,18 +27,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Habit> dummy = new List();
+  List<Habit> tempSnapshot = [];
 
   @override
   void initState() {
     super.initState();
-
-    Habit tempHabit = Habit();
-    tempHabit.title = 'Meditation';
-    tempHabit.description = 'Start the day with calm';
-    tempHabit.habitColor = Colors.blue;
-    tempHabit.icon = ActivityIcon.meditation;
-    dummy.add(tempHabit);
   }
 
   @override
@@ -111,6 +104,7 @@ class _HomePageState extends State<HomePage> {
               stream: snapshot.data,
               builder: (_, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
                 if (streamSnapshot.hasData) {
+                  tempSnapshot = [];
                   return ListView.builder(
                     itemCount: streamSnapshot.data.documents.length,
                     itemBuilder: (_, index) {
@@ -118,6 +112,7 @@ class _HomePageState extends State<HomePage> {
                       if (!streamSnapshot.hasData) {
                         return Text('No data found');
                       }
+                      tempSnapshot.add(Habit.fromDocument(document));
                       return HomePageCard(
                         habit: Habit.fromDocument(document),
                         onDeleteHabit: (habit) {
@@ -181,17 +176,17 @@ class _HomePageState extends State<HomePage> {
 
   Future addHabitCallBack(Habit habit) async {
     CollectionReference ref = await widget.api.getHabitsCollectionReference();
-
-    setState(() {
-      ref.add(habit.toDocument());
-    });
+    for (Habit snap in tempSnapshot) {
+      if (habit.title == snap.title) {
+        showDialogWithClose(context, "Habit ${habit.title} already exists");
+        return;
+      }
+    }
+    await ref.document(habit.title).setData(habit.toDocument());
   }
 
-  void deleteHabitCallBack(Habit habit) {
-    setState(() {
-      if (dummy.contains(habit)) {
-        dummy.remove(habit);
-      }
-    });
+  Future deleteHabitCallBack(Habit habit) async {
+    CollectionReference ref = await widget.api.getHabitsCollectionReference();
+    await ref.document(habit.title).delete();
   }
 }
