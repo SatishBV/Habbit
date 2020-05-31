@@ -69,7 +69,10 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      body: getListOfHabits(),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 12.0),
+        child: getListOfHabits(),
+      ),
       floatingActionButton: FloatingActionButton(
         disabledElevation: 4.0,
         child: FaIcon(
@@ -90,7 +93,7 @@ class _HomePageState extends State<HomePage> {
     return ref.snapshots();
   }
 
-  FutureBuilder getListOfHabits() {
+  Widget getListOfHabits() {
     return FutureBuilder(
       future: getHabitsStream(),
       builder: (_, snapshot) {
