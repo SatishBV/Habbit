@@ -40,4 +40,8 @@ class DateUtils {
     return firstDayOfYear.add(
         Duration(days: (dayOfWeek <= DateTime.thursday ? 1 : 8) - dayOfWeek));
   }
+
+  static DateTime dateOnly(DateTime dateTime) {
+    return new DateTime(dateTime.year, dateTime.month, dateTime.day);
+  }
 }

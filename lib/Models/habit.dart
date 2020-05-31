@@ -51,6 +51,13 @@ class Habit {
   }
 
   Map<String, dynamic> toDocument() {
+
+    List<Timestamp> timeStamps = [];
+
+    this.checkIns.forEach((element) {
+      timeStamps.add(Timestamp.fromDate(element));
+    });
+
     return {
       "title": this.title,
       "description": this.description,
@@ -64,7 +71,8 @@ class Habit {
         "friday": this.selectedDays[WeekDay.friday],
         "saturday": this.selectedDays[WeekDay.saturday],
         "sunday": this.selectedDays[WeekDay.sunday],
-      }
+      },
+      "checkIns": timeStamps
     };
   }
 
@@ -113,6 +121,33 @@ class Habit {
   }
 
   void addCheckIn(DateTime dateTime) {
+    for (DateTime checkIn in checkIns) {
+      if (DateUtils.dateOnly(checkIn) == DateUtils.dateOnly(dateTime)) {
+        return;
+      }
+    }
     checkIns.add(dateTime);
+  }
+
+  void removeCheckIn(DateTime dateTime) {
+    List<DateTime> elementToBeRemoved = [];
+    checkIns.forEach((element) {
+      if (DateUtils.dateOnly(dateTime) == DateUtils.dateOnly(element)) {
+        elementToBeRemoved.add(element);
+      }
+    });
+
+    elementToBeRemoved.forEach((element) {
+      checkIns.remove(element);
+    });
+  }
+
+  bool isCheckedIn(DateTime dateTime) {
+    for (DateTime checkIn in checkIns) {
+      if (DateUtils.dateOnly(checkIn) == DateUtils.dateOnly(dateTime)) {
+        return true;
+      }
+    }
+    return false;
   }
 }
