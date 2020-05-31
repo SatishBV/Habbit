@@ -148,6 +148,7 @@ class _HomePageState extends State<HomePage> {
                       tempSnapshot.add(Habit.fromDocument(document));
                       return HomePageCard(
                         habit: Habit.fromDocument(document),
+                        currentDate: DateTime.now(),
                         onDeleteHabit: (habit) {
                           deleteHabitCallBack(habit);
                         },

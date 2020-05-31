@@ -141,4 +141,13 @@ class Habit {
       checkIns.remove(element);
     });
   }
+
+  bool isCheckedIn(DateTime dateTime) {
+    for (DateTime checkIn in checkIns) {
+      if (DateUtils.dateOnly(checkIn) == DateUtils.dateOnly(dateTime)) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

@@ -8,6 +8,7 @@ class HomePageCard extends StatefulWidget {
   const HomePageCard({
     Key key,
     @required this.habit,
+    @required this.currentDate,
     @required this.onDeleteHabit,
     @required this.onCheckIn,
   }) : super(key: key);
@@ -15,6 +16,7 @@ class HomePageCard extends StatefulWidget {
   final Habit habit;
   final Function onDeleteHabit;
   final Function onCheckIn;
+  final DateTime currentDate;
 
   @override
   _HomePageCardState createState() => _HomePageCardState();
@@ -22,6 +24,13 @@ class HomePageCard extends StatefulWidget {
 
 class _HomePageCardState extends State<HomePageCard> {
   bool _isSelected = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _isSelected = widget.habit.isCheckedIn(widget.currentDate);
+  }
 
   @override
   Widget build(BuildContext context) {
