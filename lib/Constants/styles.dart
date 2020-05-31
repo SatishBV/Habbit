@@ -9,27 +9,7 @@ const Color kPapayaColor = Color(0xFFFCA311);
 const Color kDarkBlueColor = Color(0xFF14213D);
 const Color kGreyColor = Color(0xFFE5E5E5);
 
-const List<Color> availableColors = [
-  Colors.red,
-  Colors.pink,
-  Colors.purple,
-  Colors.deepPurple,
-  Colors.indigo,
-  Colors.blue,
-  Colors.lightBlue,
-  Colors.cyan,
-  Colors.teal,
-  Colors.green,
-  Colors.lightGreen,
-  Colors.lime,
-  Colors.yellow,
-  Colors.amber,
-  Colors.orange,
-  kPapayaColor,
-  Colors.brown,
-  Colors.grey,
-  Colors.blueGrey,
-];
+
 
 OutlineInputBorder get textFieldFocusedBorder {
   return OutlineInputBorder(

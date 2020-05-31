@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:habbit/Constants/activity_icons.dart';
 import 'package:habbit/Constants/styles.dart';
 import 'package:habbit/Utils/activity_icon_util.dart';
+import 'package:habbit/Utils/color_util.dart';
 import 'package:habbit/Utils/date_util.dart';
 import 'package:intl/intl.dart';
 import 'weekday.dart';
@@ -36,69 +37,48 @@ class Habit {
 
     this.title = document.data["title"];
     this.description = document.data["description"];
-    this.habitColor = _getColorFrom(document.data["color"]);
+    this.habitColor = getColorFrom(document.data["color"]);
     this.icon = activityFrom(document.data["icon"]);
     _setSelectedDaysFrom(document);
 
     this.checkIns = [];
-    this.checkIns = document.data['checkIns'].map<DateTime>((item) {
-      Timestamp t = item;
-      return t.toDate();
-    }).toList();
+    if (document.data['checkIns'] != null) {
+      this.checkIns = document.data['checkIns'].map<DateTime>((item) {
+        Timestamp t = item;
+        return t.toDate();
+      }).toList();
+    }
   }
 
-  Color _getColorFrom(String color) {
-    switch (color) {
-      case 'blue':
-        return Colors.blue;
-      case 'red':
-        return Colors.red;
-      case 'green':
-        return Colors.green;
-      case 'lightGreen':
-        return Colors.lightGreen;
-      case 'pink':
-        return Colors.pink;
-      case 'purple':
-        return Colors.purple;
-      case 'deepPurple':
-        return Colors.deepPurple;
-      case 'indigo':
-        return Colors.indigo;
-      case 'lightBlue':
-        return Colors.lightBlue;
-      case 'cyan':
-        return Colors.cyan;
-      case 'teal':
-        return Colors.teal;
-      case 'lime':
-        return Colors.lime;
-      case 'yellow':
-        return Colors.yellow;
-      case 'amber':
-        return Colors.amber;
-      case 'orange':
-        return Colors.orange;
-      case 'papaya':
-        return kPapayaColor;
-      case 'brown':
-        return Colors.brown;
-      case 'grey':
-        return Colors.grey;
-      case 'blueGrey':
-        return Colors.blueGrey;
-      default:
-        return kPapayaColor;
-    }
+  Map<String, dynamic> toDocument() {
+    return {
+      "title": this.title,
+      "description": this.description,
+      "icon": stringFrom(this.icon),
+      "color": colorString(this.habitColor),
+      "selectedDays": {
+        "monday": this.selectedDays[WeekDay.monday],
+        "tuesday": this.selectedDays[WeekDay.tuesday],
+        "wednesday": this.selectedDays[WeekDay.wednesday],
+        "thursday": this.selectedDays[WeekDay.thursday],
+        "friday": this.selectedDays[WeekDay.friday],
+        "saturday": this.selectedDays[WeekDay.saturday],
+        "sunday": this.selectedDays[WeekDay.sunday],
+      }
+    };
   }
 
   void _setSelectedDaysFrom(DocumentSnapshot document) {
     this.selectedDays[WeekDay.monday] = document.data["selectedDays"]["monday"];
-    this.selectedDays[WeekDay.tuesday] = document.data["selectedDays"]["tuesday"];
-    this.selectedDays[WeekDay.wednesday] = document.data["selectedDays"]["wednesday"];
-    this.selectedDays[WeekDay.thursday] = document.data["selectedDays"]["thursday"];
+    this.selectedDays[WeekDay.tuesday] =
+        document.data["selectedDays"]["tuesday"];
+    this.selectedDays[WeekDay.wednesday] =
+        document.data["selectedDays"]["wednesday"];
+    this.selectedDays[WeekDay.thursday] =
+        document.data["selectedDays"]["thursday"];
     this.selectedDays[WeekDay.friday] = document.data["selectedDays"]["friday"];
-    this.selectedDays[WeekDay.saturday] = document.data["selectedDays"]["saturday"];
+    this.selectedDays[WeekDay.saturday] =
+        document.data["selectedDays"]["saturday"];
     this.selectedDays[WeekDay.sunday] = document.data["selectedDays"]["sunday"];
   }
 
