@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:habbit/Models/habit.dart';
 import 'package:habbit/Utils/alerts_util.dart';
+import 'package:habbit/Utils/date_util.dart';
 import 'package:habbit/add_habit.dart';
 import 'Constants/styles.dart';
 import 'Views/week_view.dart';
@@ -28,10 +29,39 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Habit> tempSnapshot = [];
+  DateTime _selectedDate = DateUtils.dateOnly(DateTime.now());
 
   @override
   void initState() {
     super.initState();
+  }
+
+  Future addHabitCallBack(Habit habit) async {
+    CollectionReference ref = await widget.api.getHabitsCollectionReference();
+    tempSnapshot.forEach((element) {
+      if (element.title == habit.title) {
+        showDialogWithClose(context, "Habit ${habit.title} already exists");
+        return;
+      }
+    });
+    await ref.document(habit.title).setData(habit.toDocument());
+  }
+
+  Future deleteHabitCallBack(Habit habit) async {
+    CollectionReference ref = await widget.api.getHabitsCollectionReference();
+    await ref.document(habit.title).delete();
+  }
+
+  Future addCheckIn(Habit habit) async {
+    habit.addCheckIn(DateTime.now());
+    CollectionReference ref = await widget.api.getHabitsCollectionReference();
+    await ref.document(habit.title).setData(habit.toDocument());
+  }
+
+  Future removeCheckIn(Habit habit) async {
+    habit.removeCheckIn(DateTime.now());
+    CollectionReference ref = await widget.api.getHabitsCollectionReference();
+    await ref.document(habit.title).setData(habit.toDocument());
   }
 
   @override
@@ -121,6 +151,9 @@ class _HomePageState extends State<HomePage> {
                         onDeleteHabit: (habit) {
                           deleteHabitCallBack(habit);
                         },
+                        onCheckIn: (bool checkIn, Habit habit) {
+                          checkIn ? addCheckIn(habit) : removeCheckIn(habit);
+                        },
                       );
                     },
                   );
@@ -175,21 +208,6 @@ class _HomePageState extends State<HomePage> {
   void onDateSelection(DateTime dateTime) {
     print(dateTime.year.toString());
     print(dateTime.day.toString());
-  }
-
-  Future addHabitCallBack(Habit habit) async {
-    CollectionReference ref = await widget.api.getHabitsCollectionReference();
-    tempSnapshot.forEach((element) {
-      if (element.title == habit.title) {
-        showDialogWithClose(context, "Habit ${habit.title} already exists");
-        return;
-      }
-    });
-    await ref.document(habit.title).setData(habit.toDocument());
-  }
-
-  Future deleteHabitCallBack(Habit habit) async {
-    CollectionReference ref = await widget.api.getHabitsCollectionReference();
-    await ref.document(habit.title).delete();
+    _selectedDate = DateUtils.dateOnly(dateTime);
   }
 }

@@ -5,12 +5,16 @@ import 'package:habbit/Models/habit.dart';
 import 'package:habbit/Constants/activity_icons.dart';
 
 class HomePageCard extends StatefulWidget {
-  const HomePageCard(
-      {Key key, @required this.habit, @required this.onDeleteHabit})
-      : super(key: key);
+  const HomePageCard({
+    Key key,
+    @required this.habit,
+    @required this.onDeleteHabit,
+    @required this.onCheckIn,
+  }) : super(key: key);
 
   final Habit habit;
   final Function onDeleteHabit;
+  final Function onCheckIn;
 
   @override
   _HomePageCardState createState() => _HomePageCardState();
@@ -135,6 +139,7 @@ class _HomePageCardState extends State<HomePageCard> {
       onTap: () {
         setState(() {
           _isSelected = !_isSelected;
+          widget.onCheckIn(false, widget.habit);
         });
       },
       child: Center(
@@ -152,6 +157,7 @@ class _HomePageCardState extends State<HomePageCard> {
       onTap: () {
         setState(() {
           _isSelected = !_isSelected;
+          widget.onCheckIn(true, widget.habit);
         });
       },
       child: Container(
