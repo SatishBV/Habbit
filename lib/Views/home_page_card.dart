@@ -42,6 +42,46 @@ class _HomePageCardState extends State<HomePageCard> {
                 background: Container(),
                 secondaryBackground: taskDeleteBackground(),
                 direction: DismissDirection.endToStart,
+                confirmDismiss: (direction) async {
+                  if (direction == DismissDirection.endToStart) {
+                    final bool res = await showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          content: Text(
+                            "Are you sure you want to delete the habit ${widget.habit.title}?",
+                          ),
+                          actions: <Widget>[
+                            FlatButton(
+                              child: Text(
+                                "Cancel",
+                                style: TextStyle(color: kWhiteColor),
+                              ),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                            FlatButton(
+                              child: Text(
+                                "Delete",
+                                style: TextStyle(color: Colors.red),
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  widget.onDeleteHabit(widget.habit);
+                                });
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                    return res;
+                  } else {
+                    return true;
+                  }
+                },
                 child: Container(
                   height: 80.0,
                   child: Material(
@@ -142,17 +182,13 @@ class _HomePageCardState extends State<HomePageCard> {
 
   Widget taskDeleteBackground() {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      padding: const EdgeInsets.symmetric(vertical: 0.0),
       child: Container(
         height: 80.0,
         padding: EdgeInsets.only(right: 28.0),
         alignment: AlignmentDirectional.centerEnd,
         decoration: BoxDecoration(
           color: Colors.red,
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(10.0),
-            bottomRight: Radius.circular(10.0),
-          ),
         ),
         child: FaIcon(FontAwesomeIcons.minusCircle),
       ),
