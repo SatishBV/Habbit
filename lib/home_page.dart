@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:habbit/Constants/activity_icons.dart';
 import 'package:habbit/Models/habit.dart';
 import 'package:habbit/add_habit.dart';
 import 'Constants/styles.dart';
@@ -27,18 +26,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Habit> dummy = new List();
-
   @override
   void initState() {
     super.initState();
-
-    Habit tempHabit = Habit();
-    tempHabit.title = 'Meditation';
-    tempHabit.description = 'Start the day with calm';
-    tempHabit.habitColor = Colors.blue;
-    tempHabit.icon = ActivityIcon.meditation;
-    dummy.add(tempHabit);
   }
 
   @override
@@ -181,17 +171,11 @@ class _HomePageState extends State<HomePage> {
 
   Future addHabitCallBack(Habit habit) async {
     CollectionReference ref = await widget.api.getHabitsCollectionReference();
-
-    setState(() {
-      ref.add(habit.toDocument());
-    });
+    await ref.document(habit.title).setData(habit.toDocument());
   }
 
-  void deleteHabitCallBack(Habit habit) {
-    setState(() {
-      if (dummy.contains(habit)) {
-        dummy.remove(habit);
-      }
-    });
+  Future deleteHabitCallBack(Habit habit) async {
+    CollectionReference ref = await widget.api.getHabitsCollectionReference();
+    await ref.document(habit.title).delete();
   }
 }
